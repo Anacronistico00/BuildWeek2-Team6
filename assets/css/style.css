@@ -4,7 +4,53 @@
 
 html,
 body {
+  font-family: 'circular';
+  background-color: black;
+  color: white;
+}
+
+html,
+body,
+p {
   margin: 0;
   padding: 0;
-  font-family: 'circular';
+}
+
+aside,
+main {
+  border: 1px solid white;
+}
+
+.hover p:hover,
+.hover a:hover {
+  font-weight: bolder;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.hover i:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+main {
+  background-color: #121212;
+}
+
+.cardDiv {
+  padding: 0;
+}
+
+.cardDiv:hover {
+  /* transform: scale(1.05); */
+  background-color: #1d1c1c;
+  cursor: pointer;
+}
+
+.imgsDiv {
+  min-width: 82px;
+  max-width: 100px;
+
+  min-height: 82px;
+  max-height: 100px;
 }
