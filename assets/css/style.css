@@ -16,11 +16,6 @@ p {
   padding: 0;
 }
 
-aside,
-main {
-  border: 1px solid white;
-}
-
 .hover p:hover,
 .hover a:hover {
   font-weight: bolder;
@@ -33,12 +28,23 @@ main {
   cursor: pointer;
 }
 
-main {
-  background-color: #121212;
+@media screen and (max-width: 991px) {
+  .navigation {
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+
+  .bi-house-door-fill,
+  .bi-search,
+  .bi-collection {
+    font-size: 1.3em;
+  }
 }
 
-.cardDiv {
-  padding: 0;
+main {
+  background-color: #121212;
 }
 
 .cardDiv:hover {

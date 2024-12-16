@@ -20,28 +20,32 @@
   </head>
   <body>
     <div class="container-fluid row p-0 m-auto d-flex">
-      <aside class="col-12 col-lg-3 order-1 order-lg-0">
+      <aside class="col-12 col-lg-3 order-1 order-lg-0 navigation">
         <nav>
           <div
-            class="container d-flex flex-row flex-lg-column justify-content-center align-items-center align-items-lg-start my-2 hover"
+            class="container d-flex flex-row flex-lg-column justify-content-evenly align-items-center align-items-lg-start my-2 hover"
           >
             <p class="d-none d-lg-block">
               <i class="bi bi-three-dots p-1"></i>
             </p>
             <a
               href="index.html"
-              class="px-2 px-lg-0 m-0 mb-lg-2 fw-bold text-decoration-none text-white"
+              class="px-2 px-lg-0 m-0 mb-lg-2 fw-bold text-decoration-none text-white d-flex flex-column flex-lg-row justify-content-center align-items-center"
             >
-              <i class="bi bi-house-door-fill p-1" aria-current="page"></i>Home
+              <i class="bi bi-house-door-fill p-1" aria-current="page"></i>
+              <span>Home</span>
             </a>
             <a
               href="search.html"
-              class="px-2 px-lg-0 m-0 mb-lg-2 text-decoration-none text-white"
+              class="px-2 px-lg-0 m-0 mb-lg-2 text-decoration-none text-white d-flex flex-column flex-lg-row justify-content-center align-items-center"
             >
               <i class="bi bi-search p-1"></i>Cerca
             </a>
-            <p class="px-2 px-lg-0 m-0 mb-lg-2">
-              <i class="bi bi-collection-fill p-1"></i>La tua Libreria
+            <p
+              class="px-2 px-lg-0 m-0 mb-lg-2 d-flex flex-column flex-lg-row justify-content-center align-items-center"
+            >
+              <i class="bi bi-collection p-1"></i>
+              <span>La tua Libreria</span>
             </p>
           </div>
           <div class="container d-none d-lg-block mt-2 hover">
@@ -49,7 +53,7 @@
               <i
                 class="bi bi-plus bg-secondary border-0 rounded-1 text-white fs-4"
               ></i>
-              Crea Playlist
+              <span>Crea Playlist</span>
             </p>
             <p class="mb-2">
               <i
@@ -79,22 +83,23 @@
             </p>
           </div>
         </div>
+        <div id="randomSong" class="container-fluid row"></div>
         <div
-          class="container-fluid d-block d-lg-none d-flex justify-content-between align-items-center py-3"
+          class="container-fluid d-flex justify-content-between align-items-center py-3"
         >
           <div><h2 class="m-2 fw-bolder">Buongiorno</h2></div>
-          <div class="fs-2 hover">
+          <div class="fs-2 hover d-block d-lg-none">
             <i class="bi bi-bell mx-2"></i>
             <i class="bi bi-clock-history mx-2"></i>
             <i class="bi bi-gear mx-2"></i>
           </div>
         </div>
-        <div class="container fs-6 d-flex hover mb-2">
+        <div class="container d-block d-lg-none fs-6 d-flex hover mb-2">
           <p class="mx-3">Musica</p>
           <p class="mx-3">Podcast e Show</p>
         </div>
         <div
-          class="container-fluid row row-cols-2 row-cols-lg-3 justify-content-center m-auto"
+          class="container-fluid row row-cols-2 row-cols-xl-3 justify-content-center m-auto"
         >
           <div class="cardDiv row mb-3 me-2">
             <div class="row col-5 m-0 p-0 pe-2 imgsDiv">
@@ -123,7 +128,7 @@
               <p>Early stage Emily Syndrome</p>
             </div>
           </div>
-          <div class="cardDiv row mb-2 me-lg-2">
+          <div class="cardDiv row mb-3 me-lg-2">
             <div class="row col-5 m-0 p-0 pe-2 imgsDiv">
               <img
                 src="assets/imgs/search/image-2.jpg"
@@ -162,7 +167,7 @@
               <p>Your Discover Weekly</p>
             </div>
           </div>
-          <div class="cardDiv row mb-2 me-lg-2">
+          <div class="cardDiv row mb-3 me-lg-2">
             <div class="row col-5 m-0 p-0 pe-2 imgsDiv">
               <img
                 src="assets/imgs/search/image-5.jpg"
@@ -201,7 +206,7 @@
               <p>Just Chilling under the Moon</p>
             </div>
           </div>
-          <div class="cardDiv row mb-2 me-lg-2">
+          <div class="cardDiv row mb-3 me-lg-2">
             <div class="row col-5 m-0 p-0 pe-2 imgsDiv">
               <img
                 src="assets/imgs/search/image-52.jpg"
@@ -212,6 +217,62 @@
             <div class="col-7 m-0 p-0 d-flex align-items-center">
               <p>Top Gaming Tracks</p>
             </div>
+          </div>
+        </div>
+        <div class="container m-auto my-3 rounded-4 bg-dark">
+          <div class="container row px-2 py-3 m-auto">
+            <div class="row col-6">
+              <img
+                src="assets/imgs/search/image-27.jpg"
+                alt="Cover"
+                class="col-6 p-0"
+              /><img
+                src="assets/imgs/search/image-21.jpg"
+                alt="Cover"
+                class="col-6 p-0"
+              /><img
+                src="assets/imgs/search/image-12.jpg"
+                alt="Cover"
+                class="col-6 p-0"
+              /><img
+                src="assets/imgs/search/image-44.png"
+                alt="Cover"
+                class="col-6 p-0"
+              />
+            </div>
+            <div class="col-6">
+              <p class="px-2 text-secondary">Playlist</p>
+              <h3>Study and Work space</h3>
+            </div>
+          </div>
+          <div class="container row p-3 m-auto">
+            <div class="col-6 d-flex fs-3">
+              <i class="bi bi-heart"></i>
+              <i class="bi bi-three-dots-vertical mx-5"></i>
+            </div>
+            <div id="tracksPlay" class="col-6 d-flex justify-content-end"></div>
+          </div>
+        </div>
+        <div class="container m-auto my-3 rounded-4 bg-dark">
+          <div class="container row px-2 py-3 m-auto">
+            <div class="col-6">
+              <img
+                src="assets/imgs/search/image-27.jpg"
+                alt="Cover"
+                class="w-100"
+              />
+            </div>
+            <div class="col-6">
+              <p class="px-2 text-secondary">Playlist</p>
+              <h3>Study and Work space</h3>
+            </div>
+          </div>
+          <div class="container row p-3 m-auto">
+            <div class="col-6 d-flex fs-3">
+              <i class="bi bi-heart"></i>
+              <i class="bi bi-three-dots-vertical mx-5"></i>
+            </div>
+            <div id="tracksPlay" class="col-6 d-flex justify-content-end"></div>
           </div>
         </div>
       </main>
