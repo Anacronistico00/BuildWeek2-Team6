@@ -124,10 +124,10 @@ main {
 
 @keyframes scroll-text {
   from {
-    transform: translateX(100%);
+    transform: translateX(200%);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-200%);
   }
 }
 
@@ -163,4 +163,17 @@ main {
 
 .infos {
   font-size: 0.7em;
+}
+
+/*SEARCH*/
+
+.searchImg {
+  transform: rotate(20deg);
+  max-width: 40%;
+  border-radius: 10px;
+  margin-right: -20px;
+}
+
+.searchDiv {
+  margin-bottom: 140px;
 }
