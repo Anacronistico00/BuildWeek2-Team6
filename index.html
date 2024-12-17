@@ -490,8 +490,61 @@
           </div>
         </div>
       </main>
-      <div id="player">
-        <div id="playerBar" class="container-fluid rounded-4 bg-dark"></div>
+      <div id="player" class="d-flex justify-content-center">
+        <div
+          id="playerNav"
+          class="container-fluid d-flex rounded-3 bg-dark align-items-center justify-content-between"
+        >
+          <div id="trackInfo" class="d-flex align-items-center">
+            <div id="albumCover" class="">
+              <img
+                src="assets/imgs/main/image-12.jpg"
+                alt=""
+                class="rounded-5"
+              />
+            </div>
+            <div id="track" class="ms-2">
+              <h5 class="m-0">Pollon combina guai</h5>
+              <p>Cristina D'Avena</p>
+            </div>
+          </div>
+          <div
+            id="buttons"
+            class="d-flex justify-content-end align-items-center d-lg-none"
+          >
+            <i class="bi bi-pc-display btn text-white fs-4 p-1"></i>
+            <i class="bi bi-heart btn text-white fs-4 p-1"></i>
+            <button class="btn text-white fs-1 p-1">
+              <i class="bi bi-play-fill"></i>
+            </button>
+          </div>
+          <div id="playerBar" class="d-none d-lg-block">
+            <div class="player-bar d-flex">
+              <!-- Sezione centrale: Controlli -->
+              <div class="controls">
+                <i class="bi bi-skip-start-fill btn text-white"></i>
+                <button class="btn">
+                  <i class="bi bi-play-circle-fill play-pause text-white"></i>
+                </button>
+                <i class="bi bi-skip-end-fill btn text-whitetext-white"></i>
+              </div>
+
+              <!-- Sezione destra: Volume e altro -->
+            </div>
+          </div>
+          <div id="playerBtns" class="d-none d-lg-block">
+            <div class="extras">
+              <i class="bi bi-volume-up"></i>
+              <input
+                type="range"
+                class="volume-control"
+                min="0"
+                max="100"
+                value="50"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <aside class="d-none d-lg-block col-2 order-2 order-lg-2">c</aside>
     </div>
