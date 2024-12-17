@@ -36,3 +36,5 @@ function updateHeartIcon(isAdded) {
 
 // Aggiunge o rimuove il brano preferito al click sull'icona
 heartIcon.addEventListener('click', togglePlaylist);
+
+const randomSong = document.getElementById('randomSong');

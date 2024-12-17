@@ -295,7 +295,7 @@
                 class="rounded-5"
               />
             </div>
-            <div id="track" class="ms-2 d-lg-none">
+            <div id="track" class="ms-2 d-lg-none w-100">
               <h5 id="title" class="m-0 fs-6"></h5>
             </div>
             <div id="trackLg" class="ms-2 d-none d-lg-block">
@@ -307,20 +307,38 @@
             id="buttons"
             class="col-3 d-flex justify-content-end align-items-center d-lg-none"
           >
-            <i class="bi bi-pc-display btn text-white fs-4 p-1"></i>
-            <i class="bi bi-heart btn text-white fs-4 p-1"></i>
             <button class="btn text-white fs-1 p-1">
-              <i class="bi bi-play-fill" id="playPause"></i>
+              <i
+                class="bi bi-pc-display btn text-white fs-4 p-2 d-flex align-items-center"
+              ></i>
+            </button>
+            <button class="btn text-white fs-1 p-1">
+              <i
+                id="filledHeart"
+                class="bi bi-heart-fill text-white fs-4 p-2 d-flex align-items-center"
+              ></i>
+            </button>
+            <button class="btn text-white fs-1 p-1">
+              <i
+                class="bi bi-play-fill p-1 d-flex align-items-center"
+                id="playPause"
+              ></i>
             </button>
           </div>
           <div id="playerBar" class="col-4 d-none d-lg-block">
             <div class="player-btns d-flex flex-column">
-              <div class="controls d-flex justify-content-evenly">
-                <i class="bi bi-skip-start-fill btn text-white"></i>
+              <div
+                class="controls d-flex justify-content-evenly align-items-center"
+              >
+                <i class="bi bi-shuffle fs-6"></i>
+                <i class="bi bi-skip-start-fill btn text-white fs-4"></i>
                 <button class="btn">
-                  <i class="bi bi-play-circle-fill play-pause text-white"></i>
+                  <i
+                    class="bi bi-play-circle-fill play-pause text-white fs-3"
+                  ></i>
                 </button>
-                <i class="bi bi-skip-end-fill btn text-white"></i>
+                <i class="bi bi-skip-end-fill btn text-white fs-4"></i>
+                <i class="bi bi-repeat fs-6"></i>
               </div>
             </div>
           </div>
@@ -345,7 +363,81 @@
           </div>
         </div>
       </div>
-      <aside class="d-none d-lg-block col-2 order-2 order-lg-2">c</aside>
+      <aside class="d-none d-lg-block col-2 order-2 order-lg-2 mt-3">
+        <div
+          class="container-fluid d-flex d-lg-block d-xl-flex justify-content-between"
+        >
+          <div class="d-flex justify-content-end align-items-center">
+            <h6 class="m-0">Attività amici</h6>
+          </div>
+          <div id="asideIcons" class="d-flex justify-content-end">
+            <i class="bi bi-person-plus fs-5"></i>
+            <i class="bi bi-x-lg mx-2 fs-5"></i>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+              <img
+                src="assets/imgs/main/image-12.jpg"
+                alt=""
+                class="img-fluid w-75 rounded-5"
+              />
+            </div>
+            <div class="col-6 infos">
+              <h6>Pippo</h6>
+              <p>In camera • Topolino Top Songs</p>
+              <p><i class="bi bi-disc"></i> Ep.III</p>
+            </div>
+            <div class="col-3 infos mt-4 p-0">4 hours</div>
+          </div>
+          <div class="row">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+              <img
+                src="assets/imgs/main/image-12.jpg"
+                alt=""
+                class="img-fluid w-75 rounded-5"
+              />
+            </div>
+            <div class="col-6 infos mt-3">
+              <h6>Pippo</h6>
+              <p>In camera • Topolino Top Songs</p>
+              <p><i class="bi bi-disc"></i> Ep.III</p>
+            </div>
+            <div class="col-3 infos mt-4 p-0">4 hours</div>
+          </div>
+          <div class="row">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+              <img
+                src="assets/imgs/main/image-12.jpg"
+                alt=""
+                class="img-fluid w-75 rounded-5"
+              />
+            </div>
+            <div class="col-6 infos mt-3">
+              <h6>Pippo</h6>
+              <p>In camera • Topolino Top Songs</p>
+              <p><i class="bi bi-disc"></i> Ep.III</p>
+            </div>
+            <div class="col-3 infos mt-4 p-0">4 hours</div>
+          </div>
+          <div class="row">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+              <img
+                src="assets/imgs/main/image-12.jpg"
+                alt=""
+                class="img-fluid w-75 rounded-5"
+              />
+            </div>
+            <div class="col-6 infos mt-3">
+              <h6>Pippo</h6>
+              <p>In camera • Topolino Top Songs</p>
+              <p><i class="bi bi-disc"></i> Ep.III</p>
+            </div>
+            <div class="col-3 infos mt-4 p-0">4 hours</div>
+          </div>
+        </div>
+      </aside>
     </div>
 
     <script

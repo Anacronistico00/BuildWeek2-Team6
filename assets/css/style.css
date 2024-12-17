@@ -16,6 +16,11 @@ p {
   padding: 0;
 }
 
+#mainContainer {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .hover p:hover,
 .hover a:hover {
   font-weight: bolder;
@@ -47,19 +52,21 @@ p {
     padding: 0;
     position: fixed;
     bottom: 0;
-    height: 70px;
+    height: 85px;
     z-index: 1;
   }
 
   nav {
     background-color: #000000;
-    background: linear-gradient(#00000000, #000000);
+    background: linear-gradient(#0000006e, #000000);
     margin: 0;
+    height: 70px;
   }
 
   #player {
+    height: 60px;
     position: fixed;
-    bottom: 71px;
+    bottom: 85px;
   }
 
   #playerBar {
@@ -75,17 +82,64 @@ p {
 }
 
 @media screen and (min-width: 992px) {
-  #player {
-    position: fixed;
-    bottom: 0;
-    padding: 0;
-  }
-
   #playerNav {
     height: 80px;
     background-color: #000000 !important;
     padding: 0;
     border-radius: 0 !important;
+  }
+
+  /* Left aside (navigation) */
+  aside.navigation {
+    left: 0;
+    z-index: 10;
+  }
+
+  /* Right aside (friends activity) */
+  aside:not(.navigation) {
+    right: 0;
+  }
+
+  main {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 100px;
+  }
+
+  #randomSong {
+    background: linear-gradient(#00000000, #000000);
+  }
+
+  /* Ensure player stays at the bottom */
+  #player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+  }
+
+  /* Scrollbar styling for better aesthetics */
+  main::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  main::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  main::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 5px;
+  }
+
+  main::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  #albumCover img {
+    border-radius: 10px !important;
   }
 }
 
@@ -156,15 +210,23 @@ main {
   }
 }
 
+main {
+  overflow: scroll auto;
+}
+
 #asideIcons i:hover {
   cursor: pointer;
   color: #8a8a8a;
 }
 
 .infos {
-  font-size: 0.7em;
+  font-size: 0.5em;
+  padding: 0;
 }
 
+.infos h6 {
+  margin: 0;
+}
 /*SEARCH*/
 
 .searchImg {
@@ -176,4 +238,27 @@ main {
 
 .searchDiv {
   margin-bottom: 140px;
+}
+
+/*ARTIST*/
+
+#BgArtistImg {
+  background-image: url('../imgs/main/image-12.jpg');
+  background-size: cover;
+}
+
+.ArtistInfo {
+  margin-top: 200px;
+}
+
+.imgArtist {
+  max-width: 56px;
+}
+
+#heartArtist {
+  right: -5px;
+  bottom: -10px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }

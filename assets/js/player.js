@@ -230,6 +230,19 @@ shuffleButton.addEventListener('click', () => {
   console.log(`Modalità Random: ${isRandomActive ? 'ON' : 'OFF'}`);
 });
 
+let isRepeatActive = false; // Stato per il bottone Repeat
+
+// Selezione del bottone Repeat
+const repeatButton = document.querySelector('.bi-repeat');
+
+// Gestione del pulsante Repeat
+repeatButton.addEventListener('click', () => {
+  isRepeatActive = !isRepeatActive; // Toggle stato repeat
+  audioElement.loop = isRepeatActive; // Attiva/disattiva la proprietà loop
+  repeatButton.classList.toggle('text-success'); // Cambia colore per indicare stato attivo
+  console.log(`Modalità Repeat: ${isRepeatActive ? 'ON' : 'OFF'}`);
+});
+
 // Rimuovi l'evento esistente e aggiorna Next
 nextButton.removeEventListener('click', nextTrack); // Rimuovi il vecchio evento
 nextButton.addEventListener('click', nextTrackHandler); // Aggiungi il nuovo evento
