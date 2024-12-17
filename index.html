@@ -504,8 +504,8 @@
               />
             </div>
             <div id="track" class="ms-2">
-              <h5 class="m-0">Pollon combina guai</h5>
-              <p>Cristina D'Avena</p>
+              <h5 id="title" class="m-0">Pollon combina guai</h5>
+              <p id="artist">Cristina D'Avena</p>
             </div>
           </div>
           <div
@@ -515,21 +515,18 @@
             <i class="bi bi-pc-display btn text-white fs-4 p-1"></i>
             <i class="bi bi-heart btn text-white fs-4 p-1"></i>
             <button class="btn text-white fs-1 p-1">
-              <i class="bi bi-play-fill"></i>
+              <i class="bi bi-play-fill" id="playPause"></i>
             </button>
           </div>
           <div id="playerBar" class="d-none d-lg-block">
-            <div class="player-bar d-flex">
-              <!-- Sezione centrale: Controlli -->
+            <div class="player-btns d-flex">
               <div class="controls">
                 <i class="bi bi-skip-start-fill btn text-white"></i>
                 <button class="btn">
                   <i class="bi bi-play-circle-fill play-pause text-white"></i>
                 </button>
-                <i class="bi bi-skip-end-fill btn text-whitetext-white"></i>
+                <i class="bi bi-skip-end-fill btn text-white"></i>
               </div>
-
-              <!-- Sezione destra: Volume e altro -->
             </div>
           </div>
           <div id="playerBtns" class="d-none d-lg-block">
@@ -554,5 +551,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="assets/js/player.js"></script>
   </body>
 </html>
