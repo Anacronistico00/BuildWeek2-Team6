@@ -491,11 +491,8 @@
         </div>
       </main>
       <div id="player" class="d-flex justify-content-center">
-        <div
-          id="playerNav"
-          class="container-fluid d-flex rounded-3 bg-dark align-items-center justify-content-between"
-        >
-          <div id="trackInfo" class="d-flex align-items-center">
+        <div id="playerNav" class="container-fluid row rounded-3 bg-dark">
+          <div id="trackInfo" class="col-9 col-lg-4 d-flex align-items-center">
             <div id="albumCover" class="">
               <img
                 src="assets/imgs/main/image-12.jpg"
@@ -503,14 +500,17 @@
                 class="rounded-5"
               />
             </div>
-            <div id="track" class="ms-2">
-              <h5 id="title" class="m-0">Pollon combina guai</h5>
-              <p id="artist">Cristina D'Avena</p>
+            <div id="track" class="ms-2 d-lg-none">
+              <h5 id="title" class="m-0 fs-6"></h5>
+            </div>
+            <div id="trackLg" class="ms-2 d-none d-lg-block">
+              <h5 id="titleLg" class="m-0"></h5>
+              <p id="artistLg"></p>
             </div>
           </div>
           <div
             id="buttons"
-            class="d-flex justify-content-end align-items-center d-lg-none"
+            class="col-3 d-flex justify-content-end align-items-center d-lg-none"
           >
             <i class="bi bi-pc-display btn text-white fs-4 p-1"></i>
             <i class="bi bi-heart btn text-white fs-4 p-1"></i>
@@ -518,9 +518,9 @@
               <i class="bi bi-play-fill" id="playPause"></i>
             </button>
           </div>
-          <div id="playerBar" class="d-none d-lg-block">
-            <div class="player-btns d-flex">
-              <div class="controls">
+          <div id="playerBar" class="col-4 d-none d-lg-block">
+            <div class="player-btns d-flex flex-column">
+              <div class="controls d-flex justify-content-evenly">
                 <i class="bi bi-skip-start-fill btn text-white"></i>
                 <button class="btn">
                   <i class="bi bi-play-circle-fill play-pause text-white"></i>
@@ -529,16 +529,23 @@
               </div>
             </div>
           </div>
-          <div id="playerBtns" class="d-none d-lg-block">
-            <div class="extras">
-              <i class="bi bi-volume-up"></i>
+          <div
+            id="playerBtns"
+            class="col-4 d-none d-lg-flex align-items-center justify-content-end"
+          >
+            <div class="extras d-flex w-auto justify-content-between">
+              <i class="bi bi-mic"></i>
+              <i class="bi bi-view-list ms-1"></i>
+              <i class="bi bi-pc-display ms-1"></i>
+              <i class="bi bi-volume-up ms-1"></i>
               <input
                 type="range"
-                class="volume-control"
+                class="volume-control ms-1"
                 min="0"
                 max="100"
-                value="50"
+                value="100"
               />
+              <i class="bi bi-arrows-angle-expand ms-1"></i>
             </div>
           </div>
         </div>

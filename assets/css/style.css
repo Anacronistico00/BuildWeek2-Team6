@@ -96,3 +96,23 @@ main {
 #albumCover img {
   max-width: 46px;
 }
+
+#track {
+  overflow: hidden;
+}
+
+#title {
+  display: inline-block;
+  white-space: nowrap;
+  position: relative;
+  animation: scroll-text 10s linear 1.5;
+}
+
+@keyframes scroll-text {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
