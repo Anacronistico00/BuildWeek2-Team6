@@ -16,6 +16,7 @@ const trackTitle = document.querySelector('#title'); // Titolo
 const trackTitleLg = document.querySelector('#titleLg'); // Titolo
 const trackArtistLg = document.querySelector('#artistLg'); // Artista
 const albumCover = document.querySelector('#albumCover img'); // Copertina album
+const heartIcon = document.getElementById('filledHeart');
 
 // Funzione per recuperare le tracce dall'API
 async function fetchSongs() {
@@ -74,6 +75,8 @@ function togglePlayPause() {
 function nextTrack() {
   currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
   loadTrack(currentTrackIndex);
+  updateHeartIcon();
+  console.log(savedPlaylist);
 }
 
 // Passa al brano precedente
@@ -81,6 +84,19 @@ function prevTrack() {
   currentTrackIndex =
     (currentTrackIndex - 1 + playlist.length) % playlist.length;
   loadTrack(currentTrackIndex);
+  updateHeartIcon();
+}
+
+function updateHeartIcon() {
+  const currentTrack = playlist[currentTrackIndex];
+
+  if (savedPlaylist.some((track) => track.id === currentTrack.id)) {
+    heartIcon.classList.add('text-success'); // Cuore verde
+    heartIcon.classList.remove('text-white');
+  } else {
+    heartIcon.classList.remove('text-success');
+    heartIcon.classList.add('text-white');
+  }
 }
 
 // Gestisce il controllo del volume
