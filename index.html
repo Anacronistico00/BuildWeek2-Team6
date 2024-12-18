@@ -133,32 +133,28 @@
           >
             <!-- Titolo album -->
             <div id="albumImg" class="row col-lg-3 m-0">
-              <i class="bi bi-arrow-left col-2 d-lg-none"></i>
-              <img
-                src="assets/imgs/main/image-1.jpg"
-                alt=""
-                class="col-8 shadow-lg p-0"
-              />
-              <p class="col-2 d-lg-none"></p>
+              <img src="" alt="" class="col-8 shadow-lg p-0" id="randomImg" />
             </div>
-            <div id="RandomSong" class="col-lg-9 ps-2 py-3">
+            <div class="col-lg-9 ps-2 py-3">
               <div class="d-flex justify-content-between">
-                <p class="d-none d-lg-block">ALBUM</p>
+                <p id="randomAlbum" class="d-none d-lg-block">ALBUM</p>
                 <button
                   type="button"
+                  id="hideDiv"
                   class="btn btn-secondary rounded-5 text-white"
                 >
                   Nascondi Annuncio
                 </button>
               </div>
 
-              <h class="mt-3 fs-1">Gioventù Brucata</h>
-              <p class="ms-2">Pinguini Tattici Nucleari</p>
-              <p class="text-secondary d-lg-none">
-                Ascolta il nuovo singolo dei PTN!
-              </p>
+              <h2 id="randomSongTitle" class="mt-3 fs-1"></h2>
+              <p id="randomArtist" class="ms-2"></p>
+
               <div class="mt-1">
-                <button class="btn btn-success text-white rounded-5 m-1">
+                <button
+                  id="randomSongBtn"
+                  class="btn btn-success text-white rounded-5 m-1"
+                >
                   Play
                 </button>
                 <button

@@ -164,6 +164,25 @@ p {
   #albumCover img {
     border-radius: 10px !important;
   }
+
+  #albumImg img {
+    min-width: 100%;
+  }
+  #albumTitle h3 {
+    font-size: 3em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #albumTitle h3 {
+    font-size: 3.6em;
+  }
+}
+#BgArtistImg {
+  background-image: url('https://cdn-images.dzcdn.net/images/artist/71eeb9e2eeb375df35a3c0654a5a01ab/1000x1000-000000-80-0-0.jpg');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 main {

@@ -35,3 +35,50 @@ heartIcon.forEach((element) => {
 });
 
 const randomSong = document.getElementById('randomSong');
+let randomImg = document.getElementById('randomImg');
+let randomSongTitle = document.getElementById('randomSongTitle');
+let randomArtist = document.getElementById('randomArtist');
+const hideDiv = document.getElementById('hideDiv');
+const randomSongBtn = document.getElementById('randomSongBtn');
+
+hideDiv.addEventListener('click', function (e) {
+  e.preventDefault();
+  randomSong.classList.add('d-none');
+});
+
+const ARTIST_TOP_URL =
+  'https://striveschool-api.herokuapp.com/api/deezer/artist/1/top?limit=50';
+
+async function fetchRandomSongs() {
+  try {
+    const response = await fetch(ARTIST_TOP_URL);
+    if (!response.ok) throw new Error('Errore nel recupero delle tracce');
+
+    const data = await response.json();
+    const tracks = data.data; // Array di tracce popolari
+
+    // Mescola le tracce
+    const shuffledTracks = tracks.sort(() => Math.random() - 0.5);
+
+    // Seleziona un subset casuale (ad esempio 1 traccia)
+    const randomTrack = shuffledTracks[0]; // Prendi direttamente il primo brano
+
+    console.log('Canzone casuale:', randomTrack);
+    return randomTrack;
+  } catch (error) {
+    console.error('Errore:', error);
+    return null; // Ritorna null in caso di errore
+  }
+}
+
+// Esempio di utilizzo
+fetchRandomSongs().then((randomTrack) => {
+  if (randomTrack) {
+    randomImg.src = randomTrack.album.cover; // Imposta l'immagine
+    randomImg.alt = randomTrack.album.title;
+    randomSongTitle.textContent = randomTrack.album.title;
+    randomArtist.textContent = randomTrack.artist.name;
+  } else {
+    console.error('Impossibile ottenere una traccia casuale.');
+  }
+});

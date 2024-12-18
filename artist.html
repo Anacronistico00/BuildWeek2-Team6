@@ -70,28 +70,10 @@
             </p>
           </div>
         </nav>
-        <div id="savedPlaylistContainer">
-          <p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-heart-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
-              />
-            </svg>
-            Canzoni Preferite
-          </p>
-          <ul id="savedPlaylistItems"></ul>
-        </div>
       </aside>
-      <main class="col-12 col-lg-7 order-0 order-lg-1 pt-3 px-0">
-        <div class="p-0 m-0 w-100" id="BgArtistImg">
+      <main class="col-12 col-lg-7 order-0 order-lg-1 px-0">
+        <div class="p-3 m-0 w-100" id="BgArtistImg">
+          <!---->
           <div class="d-none d-lg-flex mb-2">
             <p class="m-1 bg-secondary rounded-5 p-1 px-2">
               <i class="bi bi-chevron-left"></i>
@@ -107,16 +89,19 @@
             ></i>
             <span class="d-none d-lg-inline">Artista Verificato</span>
             <h1 class="fw-bolder display-3">Pinguini Tattici Nucleari</h1>
+            <p class="text-secondary d-none d-lg-block">
+              94658643 ascoltatori mensili
+            </p>
           </div>
         </div>
-        <p class="text-secondary">94658643 ascoltatori mensili</p>
+        <p class="text-secondary d-lg-none p-3">94658643 ascoltatori mensili</p>
         <div
-          class="d-flex justify-content-between justify-content-lg-start align-items-center mt-3 px-2"
+          class="d-flex justify-content-between justify-content-lg-start align-items-center mt-3 p-3"
         >
-          <div class="order-2">
+          <div class="order-lg-2">
             <button
               type="button"
-              class="border-1 border-muted bg-dark text-white rounded-2"
+              class="border-lg-1 border-muted bg-dark text-white rounded-2 mx-lg-3 px-3"
             >
               Seguiti
             </button>
@@ -129,40 +114,48 @@
           </div>
         </div>
         <div
-          class="d-flex flex-column flex-lg-row justify-content-lg-between align-items-lg-start mt-4"
+          class="d-flex flex-column flex-lg-row justify-content-lg-between align-items-lg-start mt-4 p-3"
         >
-          <div class="d-flex order-lg-2 col-lg-5">
-            <div class="position-relative">
-              <img
-                src="assets/imgs/main/image-12.jpg"
-                class="rounded-5 imgArtist"
-              />
-              <i
-                class="bi bi-heart-fill bg-success border border-2 border-white text-black p-1 position-absolute text-center"
-                id="heartArtist"
-              ></i>
-            </div>
-
-            <div class="ms-3">
-              <p class="text-white">Brani che ti piacciono</p>
-              <p class="text-secondary">8 brani dei ptn</p>
-            </div>
-          </div>
-          <div class="order-lg-1 col-lg-7">
-            <h4>Popolari</h4>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex">
-                <p>1</p>
+          <div class="d-flex order-lg-2 col-lg-5 ps-lg-5 flex-lg-column">
+            <h4 class="d-none d-lg-block">Brani che ti piacciono</h4>
+            <div class="d-flex align-items-center py-2">
+              <div class="position-relative">
                 <img
                   src="assets/imgs/main/image-12.jpg"
-                  class="imgArtist rounded-0"
+                  class="rounded-5 imgArtist"
+                />
+                <i
+                  class="bi bi-heart-fill bg-success border border-2 border-white text-black p-1 position-absolute text-center"
+                  id="heartArtist"
+                ></i>
+              </div>
+              <div class="ms-3">
+                <p class="text-white d-lg-none">Brani che ti piacciono</p>
+                <p class="text-secondary">8 brani dei ptn</p>
+              </div>
+            </div>
+          </div>
+          <div class="order-lg-1 col-lg-7 mt-5 mt-lg-0">
+            <h4 class="mb-3">Popolari</h4>
+            <div class="d-flex justify-content-between align-items-center py-2">
+              <div class="d-flex align-items-center col-lg-7">
+                <p class="text-secondary">1</p>
+                <img
+                  src="assets/imgs/main/image-12.jpg"
+                  class="imgArtist rounded-0 mx-3"
                 />
                 <div>
                   <p>Titolo</p>
                   <p class="text-secondary">4555667</p>
                 </div>
               </div>
-              <i class="bi bi-three-dots-vertical"></i>
+              <div
+                class="d-none d-lg-flex col-lg-5 justify-content-between align-items-center text-secondary"
+              >
+                <p>888888</p>
+                <p>10</p>
+              </div>
+              <i class="bi bi-three-dots-vertical d-lg-none"></i>
             </div>
           </div>
         </div>
@@ -250,7 +243,7 @@
           class="container-fluid d-flex d-lg-block d-xl-flex justify-content-between"
         >
           <div class="d-flex justify-content-end align-items-center">
-            <h6 class="m-0">Attività amici</h6>
+            <h6 class="m-0">AttivitÃ amici</h6>
           </div>
           <div id="asideIcons" class="d-flex justify-content-end">
             <i class="bi bi-person-plus fs-5"></i>
@@ -268,7 +261,7 @@
             </div>
             <div class="col-6 infos">
               <h6>Pippo</h6>
-              <p>In camera • Topolino Top Songs</p>
+              <p>In camera â€¢ Topolino Top Songs</p>
               <p><i class="bi bi-disc"></i> Ep.III</p>
             </div>
             <div class="col-3 infos mt-4 p-0">4 hours</div>
@@ -283,7 +276,7 @@
             </div>
             <div class="col-6 infos mt-3">
               <h6>Pippo</h6>
-              <p>In camera • Topolino Top Songs</p>
+              <p>In camera â€¢ Topolino Top Songs</p>
               <p><i class="bi bi-disc"></i> Ep.III</p>
             </div>
             <div class="col-3 infos mt-4 p-0">4 hours</div>
@@ -298,7 +291,7 @@
             </div>
             <div class="col-6 infos mt-3">
               <h6>Pippo</h6>
-              <p>In camera • Topolino Top Songs</p>
+              <p>In camera â€¢ Topolino Top Songs</p>
               <p><i class="bi bi-disc"></i> Ep.III</p>
             </div>
             <div class="col-3 infos mt-4 p-0">4 hours</div>
@@ -313,7 +306,7 @@
             </div>
             <div class="col-6 infos mt-3">
               <h6>Pippo</h6>
-              <p>In camera • Topolino Top Songs</p>
+              <p>In camera â€¢ Topolino Top Songs</p>
               <p><i class="bi bi-disc"></i> Ep.III</p>
             </div>
             <div class="col-3 infos mt-4 p-0">4 hours</div>
