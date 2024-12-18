@@ -10,31 +10,28 @@ function togglePlaylist() {
   );
 
   if (trackIndex === -1) {
-    // Se non è nella playlist, lo aggiunge
+    // Aggiungi il brano alla lista preferiti
     savedPlaylist.push(currentTrack);
     console.log(`Aggiunto alla playlist: ${currentTrack.title}`);
   } else {
-    // Se è già nella playlist, lo rimuove
+    // Rimuovi il brano dalla lista preferiti
     savedPlaylist.splice(trackIndex, 1);
     console.log(`Rimosso dalla playlist: ${currentTrack.title}`);
   }
 
-  // Aggiorna lo stile dell'icona
-  updateHeartIcon(trackIndex === -1);
-}
+  // Salva la playlist nel localStorage
+  savePlaylistToLocalStorage();
 
-// Funzione per aggiornare lo stile del cuore
-function updateHeartIcon(isAdded) {
-  if (isAdded) {
-    heartIcon.classList.add('text-success'); // Cuore verde dopo il click
-    heartIcon.classList.remove('text-white');
-  } else {
-    heartIcon.classList.remove('text-success');
-    heartIcon.classList.add('text-white'); // Torna bianco se rimosso
-  }
+  // Aggiorna le icone dei cuori
+  updateHeartIcon();
+
+  // Aggiorna la lista salvata
+  updateSavedPlaylistUI();
 }
 
 // Aggiunge o rimuove il brano preferito al click sull'icona
-heartIcon.addEventListener('click', togglePlaylist);
+heartIcon.forEach((element) => {
+  element.addEventListener('click', togglePlaylist);
+});
 
 const randomSong = document.getElementById('randomSong');

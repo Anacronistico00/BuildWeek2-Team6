@@ -16,11 +16,6 @@ p {
   padding: 0;
 }
 
-#mainContainer {
-  height: 100vh;
-  overflow: hidden;
-}
-
 .hover p:hover,
 .hover a:hover {
   font-weight: bolder;
@@ -100,6 +95,10 @@ p {
     right: 0;
   }
 
+  .trackInfo {
+    font-size: 0.8em;
+  }
+
   main {
     height: 100vh;
     overflow-y: auto;
@@ -109,17 +108,30 @@ p {
 
   #randomSong {
     background: linear-gradient(
-      135deg,
+      to top right,
       rgba(0, 0, 0, 0.9) 0%,
       rgba(106, 106, 106, 0.7) 50%,
       rgba(255, 255, 255, 0.9) 100%
     );
     background-size: 400% 400%;
     border-radius: 10px;
+    animation: gradientFlow 15s ease infinite;
     padding: 15px;
     margin: 15px 0 !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+  }
+
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   /* Ensure player stays at the bottom */
