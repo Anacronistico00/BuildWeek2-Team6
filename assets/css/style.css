@@ -77,6 +77,11 @@ p {
 }
 
 @media screen and (min-width: 992px) {
+  #mainContainer {
+    height: 100vh;
+    overflow: hidden;
+  }
+
   #playerNav {
     height: 80px;
     background-color: #000000 !important;
@@ -134,7 +139,6 @@ p {
     }
   }
 
-  /* Ensure player stays at the bottom */
   #player {
     position: fixed;
     bottom: 0;
@@ -143,7 +147,6 @@ p {
     z-index: 20;
   }
 
-  /* Scrollbar styling for better aesthetics */
   main::-webkit-scrollbar {
     width: 10px;
   }
@@ -190,7 +193,6 @@ main {
 }
 
 .cardDiv:hover {
-  /* transform: scale(1.05); */
   background-color: #1d1c1c;
   cursor: pointer;
 }
@@ -236,7 +238,6 @@ main {
 /*ALBUM*/
 #albumCover img,
 #albumTitle img {
-  /* */
   max-width: 46px;
 }
 
@@ -269,6 +270,7 @@ main {
 .infos h6 {
   margin: 0;
 }
+
 /*SEARCH*/
 
 .searchImg {
