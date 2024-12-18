@@ -135,6 +135,11 @@ nextButton.addEventListener('click', nextTrack);
 prevButton.addEventListener('click', prevTrack);
 volumeControl.addEventListener('input', handleVolumeChange);
 
+// Passa automaticamente alla prossima traccia quando la canzone finisce
+audioElement.addEventListener('ended', () => {
+  nextTrackHandler();
+});
+
 // Caricamento iniziale delle tracce
 fetchSongs();
 
@@ -144,7 +149,6 @@ progressBar.type = 'range';
 progressBar.min = 0;
 progressBar.value = 0;
 progressBar.className = 'progress-bar w-100';
-progressBar.style.margin = '10px 0';
 
 // Elementi aggiuntivi per tempo trascorso e durata totale
 const progressTime = document.createElement('span');
@@ -188,3 +192,57 @@ function formatTime(time) {
   const seconds = Math.floor(time % 60);
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
+
+let isRandomActive = false;
+
+const shuffleButton = document.querySelector('.bi-shuffle'); // Bottone Shuffle esistente
+
+// Funzione per ottenere un indice casuale diverso da quello corrente
+function getRandomTrackIndex() {
+  let randomIndex;
+  do {
+    randomIndex = Math.floor(Math.random() * playlist.length);
+  } while (randomIndex === currentTrackIndex); // Evita di ripetere la traccia corrente
+  return randomIndex;
+}
+
+// Modifica del comportamento del pulsante Next
+function nextTrackHandler() {
+  if (isRandomActive) {
+    currentTrackIndex = getRandomTrackIndex(); // Seleziona una traccia casuale
+  } else {
+    currentTrackIndex = (currentTrackIndex + 1) % playlist.length; // Traccia successiva normale
+  }
+  loadTrack(currentTrackIndex);
+  audioElement.play();
+  updatePlayButton(true);
+  updateHeartIcon();
+}
+
+// Attiva/disattiva la modalità Random
+shuffleButton.addEventListener('click', () => {
+  isRandomActive = !isRandomActive; // Cambia lo stato random
+  if (isRandomActive) {
+    shuffleButton.classList.add('text-success'); // Aggiunge il verde
+  } else {
+    shuffleButton.classList.remove('text-success'); // Rimuove il verde
+  }
+  console.log(`Modalità Random: ${isRandomActive ? 'ON' : 'OFF'}`);
+});
+
+let isRepeatActive = false; // Stato per il bottone Repeat
+
+// Selezione del bottone Repeat
+const repeatButton = document.querySelector('.bi-repeat');
+
+// Gestione del pulsante Repeat
+repeatButton.addEventListener('click', () => {
+  isRepeatActive = !isRepeatActive; // Toggle stato repeat
+  audioElement.loop = isRepeatActive; // Attiva/disattiva la proprietà loop
+  repeatButton.classList.toggle('text-success'); // Cambia colore per indicare stato attivo
+  console.log(`Modalità Repeat: ${isRepeatActive ? 'ON' : 'OFF'}`);
+});
+
+// Rimuovi l'evento esistente e aggiorna Next
+nextButton.removeEventListener('click', nextTrack); // Rimuovi il vecchio evento
+nextButton.addEventListener('click', nextTrackHandler); // Aggiungi il nuovo evento
