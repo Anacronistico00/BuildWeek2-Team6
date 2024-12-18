@@ -1,4 +1,5 @@
 let savedPlaylist = []; // Array per i brani preferiti
+const heartIcon = document.querySelectorAll('.filledHeart');
 
 // Funzione per aggiungere o rimuovere il brano dalla playlist
 function togglePlaylist() {
@@ -46,43 +47,6 @@ hideDiv.addEventListener('click', function (e) {
   randomSong.classList.add('d-none');
 });
 
-// const ARTIST_TOP_URL =
-//   'https://striveschool-api.herokuapp.com/api/deezer/artist/1/top?limit=50';
-
-// async function fetchRandomSongs() {
-//   try {
-//     const response = await fetch(ARTIST_TOP_URL);
-//     if (!response.ok) throw new Error('Errore nel recupero delle tracce');
-
-//     const data = await response.json();
-//     const tracks = data.data; // Array di tracce popolari
-
-//     // Mescola le tracce
-//     const shuffledTracks = tracks.sort(() => Math.random() - 0.5);
-
-//     // Seleziona un subset casuale (ad esempio 1 traccia)
-//     const randomTrack = shuffledTracks[0]; // Prendi direttamente il primo brano
-
-//     console.log('Canzone casuale:', randomTrack);
-//     return randomTrack;
-//   } catch (error) {
-//     console.error('Errore:', error);
-//     return null; // Ritorna null in caso di errore
-//   }
-// }
-
-// // Esempio di utilizzo
-// fetchRandomSongs().then((randomTrack) => {
-//   if (randomTrack) {
-// randomImg.src = randomTrack.album.cover; // Imposta l'immagine
-// randomImg.alt = randomTrack.album.title;
-// randomSongTitle.textContent = randomTrack.album.title;
-// randomArtist.textContent = randomTrack.artist.name;
-//   } else {
-//     console.error('Impossibile ottenere una traccia casuale.');
-//   }
-// });
-
 function fetchAndDisplayData() {
   // Genera un numero intero casuale per 'query'
   let query = Math.floor(Math.random() * 1000 + 1);
@@ -91,18 +55,26 @@ function fetchAndDisplayData() {
   fetch(endpoint)
     .then((response) => response.json())
     .then((data) => {
-      const artists = data.data;
-      if (artists.length === 0) {
+      const songs = data.data;
+      if (songs.length === 0) {
         fetchAndDisplayData();
       }
-      console.log(artists);
-      //const artists = data;
-      artists.forEach((item) => {
+      console.log(songs);
+
+      //const songs = data;
+      songs.forEach((item) => {
         randomImg.src = item.album.cover;
         randomImg.alt = item.album.title;
         randomSongTitle.textContent = item.album.title;
         randomArtist.textContent = item.artist.name;
 
+        randomSongBtn.addEventListener('click', function () {
+          fetchSongs(`${item.album.id}`);
+          setTimeout(() => {
+            audioElement.play();
+            updatePlayButton(true); // Aggiorna bottone a "Pausa"
+          }, 1000);
+        });
         console.log(`ID: ${item.id}, Nome: ${item.album.title}`);
       });
     })
@@ -128,82 +100,83 @@ const classConfig = {
   buttonClass: '',
 };
 
-function fetchAndDisplayCards() {
+function fetchAndDisplayRandom() {
   // Genera un numero intero casuale per 'query'
   let query = Math.floor(Math.random() * 1000 + 2);
-  const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/album/${query}`;
+  const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/albums`;
 
   fetch(endpoint)
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      let artists = data;
+      if (data.data && data.data.length > 0) {
+        // Seleziona un album casuale dall'elenco
+        const randomIndex = Math.floor(Math.random() * data.data.length);
+        const album = data.data[randomIndex];
 
-      const mainContainer = document.getElementById('fetchCards');
-      mainContainer.classList.add('row');
-      query = Math.floor(Math.random() * 400 + 2);
+        console.log('Album selezionato:', album);
 
-      // Crea un div per il contenitore della card
-      const containerDiv = document.createElement('div');
-      containerDiv.className = classConfig.containerClass;
+        const mainContainer = document.getElementById('fetchCards');
+        mainContainer.classList.add('row');
 
-      // Crea l'elemento della card
-      const cardDiv = document.createElement('div');
-      cardDiv.className = classConfig.cardClass;
-      console.log(artists.picture);
-      // Aggiungi l'immagine alla card
-      const imgElement = document.createElement('img');
-      imgElement.className = classConfig.imageClass;
-      imgElement.src = artists.album.cover; // Usa l'URL dell'immagine dal JSON
-      imgElement.alt = artists.name;
-      cardDiv.appendChild(imgElement);
+        // Crea un div per il contenitore della card
+        const containerDiv = document.createElement('div');
+        containerDiv.className = classConfig.containerClass;
 
-      // Crea il corpo della card
-      const cardBody = document.createElement('div');
-      cardBody.className = classConfig.bodyClass;
+        // Crea l'elemento della card
+        const cardDiv = document.createElement('div');
+        cardDiv.className = classConfig.cardClass;
 
-      // Aggiungi il titolo
-      const titleElement = document.createElement('h5');
-      titleElement.className = classConfig.titleClass;
-      titleElement.textContent = artists.album.name;
-      cardBody.appendChild(titleElement);
+        // Aggiungi l'immagine alla card
+        const imgElement = document.createElement('img');
+        imgElement.className = classConfig.imageClass;
+        imgElement.src = album.cover; // Usa l'URL dell'immagine dal JSON
+        imgElement.alt = album.title;
+        cardDiv.appendChild(imgElement);
 
-      // Aggiungi il corpo alla card
-      cardDiv.appendChild(cardBody);
+        // Crea il corpo della card
+        const cardBody = document.createElement('div');
+        cardBody.className = classConfig.bodyClass;
 
-      // Crea il footer della card
-      const cardFooter = document.createElement('div');
-      cardFooter.className = classConfig.footerClass;
+        // Aggiungi il titolo
+        const titleElement = document.createElement('h5');
+        titleElement.className = classConfig.titleClass;
+        titleElement.textContent = album.title;
+        cardBody.appendChild(titleElement);
 
-      // Aggiungi un pulsante al footer
-      const buttonElement = document.createElement('a');
-      buttonElement.className = classConfig.buttonClass;
-      buttonElement.href = artists.preview; // Link all'album
-      buttonElement.textContent = 'Ascolta ora';
-      cardFooter.appendChild(buttonElement);
+        // Aggiungi il corpo alla card
+        cardDiv.appendChild(cardBody);
 
-      // Aggiungi il footer alla card
-      cardDiv.appendChild(cardFooter);
+        // Crea il footer della card
+        const cardFooter = document.createElement('div');
+        cardFooter.className = classConfig.footerClass;
 
-      // Aggiungi la card al contenitore
-      containerDiv.appendChild(cardDiv);
+        // Aggiungi un pulsante al footer
+        const buttonElement = document.createElement('a');
+        buttonElement.className = classConfig.buttonClass;
+        buttonElement.href = album.link; // Link all'album su Deezer
+        buttonElement.textContent = 'Ascolta ora';
+        cardFooter.appendChild(buttonElement);
 
-      // Aggiungi il contenitore al mainContainer nel DOM
-      mainContainer.appendChild(containerDiv);
-      console.log(`ID: ${artists.id}, Nome: ${artists.album.title}`);
+        // Aggiungi il footer alla card
+        cardDiv.appendChild(cardFooter);
+
+        // Aggiungi la card al contenitore
+        containerDiv.appendChild(cardDiv);
+
+        // Aggiungi il contenitore al mainContainer nel DOM
+        mainContainer.appendChild(containerDiv);
+      } else {
+        console.warn('Nessun album trovato per questo artista.');
+      }
     })
     .catch((error) => console.error('Errore:', error));
 }
 
 function fetchCardsMain() {
   //FUNZIONE SCIANTAL
-
-  fetchAndDisplayCards();
+  for (let i = 0; i < 20; i++) {
+    fetchAndDisplayRandom();
+  }
 }
 
 fetchCardsMain();
-
-// Aggiorna i dati ogni 10 secondi
-//setInterval(fetchAndDisplayCards, 1000);
