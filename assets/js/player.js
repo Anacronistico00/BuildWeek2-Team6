@@ -53,7 +53,7 @@ function loadTrack(index) {
   if (track) {
     audioElement.src = track.preview; // Imposta la sorgente audio
     trackTitle.innerText = `${track.title} - ${track.artist.name}`;
-    trackTitleLg.textContent = track.title; // Aggiorna il titolo
+    trackTitleLg.innerHTML = track.title; // Aggiorna il titolo
     trackArtistLg.textContent = track.artist.name; // Aggiorna l'artista
     albumCover.src = track.album.cover_medium; // Aggiorna la copertina
   }
@@ -312,7 +312,7 @@ function updateSavedPlaylistUI() {
     // Testo del titolo del brano
     const trackInfo = document.createElement('span');
     trackInfo.textContent = `${track.title} - ${track.artist.name}`;
-    trackInfo.classList.add('trackInfo', 'm-auto');
+    trackInfo.classList.add('trackInfo');
 
     // Icona cuore accanto al titolo del brano
     const heart = document.createElement('i');

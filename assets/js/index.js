@@ -10,6 +10,10 @@ hideDiv.addEventListener('click', function (e) {
   randomSong.classList.add('d-none');
 });
 
+//Klajdi non c'è
+//è andato via
+// klajdi non è più cosa mia
+
 function fetchAndDisplayData() {
   // Genera un numero intero casuale per 'query'
   let query = Math.floor(Math.random() * 1000 + 1);
