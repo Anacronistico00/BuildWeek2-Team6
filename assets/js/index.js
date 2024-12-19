@@ -5,6 +5,12 @@ let randomArtist = document.getElementById('randomArtist');
 const hideDiv = document.getElementById('hideDiv');
 const randomSongBtn = document.getElementById('randomSongBtn');
 
+document.addEventListener('load', init());
+
+function init() {
+  fetchCardsMain();
+}
+
 hideDiv.addEventListener('click', function (e) {
   e.preventDefault();
   randomSong.classList.add('d-none');
@@ -157,38 +163,3 @@ function fetchCardsMain() {
     fetchAndDisplayRandom();
   }
 }
-
-fetchCardsMain();
-
-const cardImg = document.createElement('div');
-cardImg.className = 'position-relative';
-
-// Aggiungi l'immagine alla card
-const imgElement = document.createElement('img');
-imgElement.className = classConfig.imageClass;
-imgElement.src = album.cover; // Usa l'URL dell'immagine dal JSON
-imgElement.alt = album.title;
-cardImg.appendChild(imgElement);
-
-// Aggiungi icona play
-const play = document.createElement('i');
-play.className =
-  'bi bi-play-fill bg-success position-absolute d-flex align-items-center justify-content-center fs-4 d-none';
-play.style.bottom = '10px';
-play.style.right = '10px';
-play.style.width = '40px';
-play.style.height = '40px';
-play.style.borderRadius = '50%';
-cardImg.appendChild(play);
-
-cardDiv.appendChild(cardImg);
-
-// Mostra il pulsante play al passaggio del mouse
-cardImg.addEventListener('mouseover', () => {
-  play.classList.remove('d-none');
-});
-
-// Nascondi il pulsante play quando il mouse lascia l'immagine
-cardImg.addEventListener('mouseout', () => {
-  play.classList.add('d-none');
-});
