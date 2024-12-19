@@ -9,6 +9,9 @@ const audioPlayer = new Audio(); // Creazione del player audio
 document.addEventListener('load', init());
 function init() {
   changeColor();
+  setTimeout(() => {
+    updateHeartIcon();
+  }, 500);
 }
 function getRandomColor() {
   const colors = [
@@ -144,10 +147,7 @@ function renderSearchResults(results) {
       fetchSongs(`${song.album.id}`, id);
       console.log(playlist);
       updateHeartIcon();
-      setTimeout(() => {
-        audioElement.play();
-        updatePlayButton(true); // Aggiorna bottone a "Pausa"
-      }, 1000);
+
       console.log(`Riproduzione di: ${song.title} - ${song.artist.name}`);
     });
 

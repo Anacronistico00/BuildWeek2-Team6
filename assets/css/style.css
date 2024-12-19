@@ -207,7 +207,7 @@ p {
   #albumImg img {
     min-width: 100%;
   }
-  #albumTitle h3 {
+  #albumInfo h3 {
     font-size: 3em;
   }
 
@@ -276,7 +276,7 @@ main {
 
 /*ALBUM*/
 #albumCover img,
-#albumTitle img {
+#albumInfo img {
   max-width: 46px;
 }
 
@@ -381,7 +381,7 @@ input[type='text'] {
 }
 
 @media screen and (min-width: 1200px) {
-  #albumTitle h3 {
+  #albumInfo h3 {
     font-size: 3.6em;
   }
   .cardDiv {

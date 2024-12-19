@@ -53,7 +53,7 @@ function loadTrack(index) {
   if (track) {
     audioElement.src = track.preview; // Imposta la sorgente audio
     trackTitle.innerText = `${track.title} - ${track.artist.name}`;
-    trackTitleLg.innerHTML = track.title; // Aggiorna il titolo
+    trackTitleLg.innerHTML = `<a href="album.html?id=${track.album.id}" class="text-white">${track.title}</a>`; // Aggiorna il titolo
     trackArtistLg.textContent = track.artist.name; // Aggiorna l'artista
     albumCover.src = track.album.cover_medium; // Aggiorna la copertina
   }
@@ -104,7 +104,7 @@ function prevTrack() {
 
 function updateHeartIcon() {
   const currentTrack = playlist[currentTrackIndex];
-
+  const heartIcon = document.querySelectorAll('.heartIcon');
   // Aggiorna il cuore del player
   heartIcon.forEach((element) => {
     if (savedPlaylist.some((track) => track.id === currentTrack.id)) {

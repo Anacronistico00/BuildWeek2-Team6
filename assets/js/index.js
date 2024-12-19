@@ -93,12 +93,38 @@ function fetchAndDisplayRandom() {
         const cardDiv = document.createElement('div');
         cardDiv.className = classConfig.cardClass;
 
+        const cardImg = document.createElement('div');
+        cardImg.className = 'position-relative';
+
         // Aggiungi l'immagine alla card
         const imgElement = document.createElement('img');
         imgElement.className = classConfig.imageClass;
         imgElement.src = album.cover; // Usa l'URL dell'immagine dal JSON
         imgElement.alt = album.title;
-        cardDiv.appendChild(imgElement);
+        cardImg.appendChild(imgElement);
+
+        // Aggiungi icona play
+        const play = document.createElement('i');
+        play.className =
+          'bi bi-play-fill bg-success position-absolute d-flex align-items-center justify-content-center fs-4 d-none';
+        play.style.bottom = '10px';
+        play.style.right = '10px';
+        play.style.width = '40px';
+        play.style.height = '40px';
+        play.style.borderRadius = '50%';
+        cardImg.appendChild(play);
+
+        cardDiv.appendChild(cardImg);
+
+        // Mostra il pulsante play al passaggio del mouse
+        cardDiv.addEventListener('mouseover', () => {
+          play.classList.remove('d-none');
+        });
+
+        // Nascondi il pulsante play quando il mouse lascia l'immagine
+        cardDiv.addEventListener('mouseout', () => {
+          play.classList.add('d-none');
+        });
 
         // Crea il corpo della card
         const cardBody = document.createElement('div');
@@ -112,20 +138,6 @@ function fetchAndDisplayRandom() {
 
         // Aggiungi il corpo alla card
         cardDiv.appendChild(cardBody);
-
-        // Crea il footer della card
-        const cardFooter = document.createElement('div');
-        cardFooter.className = classConfig.footerClass;
-
-        // Aggiungi un pulsante al footer
-        const buttonElement = document.createElement('a');
-        buttonElement.className = classConfig.buttonClass;
-        buttonElement.href = album.link; // Link all'album su Deezer
-        buttonElement.textContent = 'Ascolta ora';
-        cardFooter.appendChild(buttonElement);
-
-        // Aggiungi il footer alla card
-        cardDiv.appendChild(cardFooter);
 
         // Aggiungi la card al contenitore
         containerDiv.appendChild(cardDiv);
@@ -147,3 +159,36 @@ function fetchCardsMain() {
 }
 
 fetchCardsMain();
+
+const cardImg = document.createElement('div');
+cardImg.className = 'position-relative';
+
+// Aggiungi l'immagine alla card
+const imgElement = document.createElement('img');
+imgElement.className = classConfig.imageClass;
+imgElement.src = album.cover; // Usa l'URL dell'immagine dal JSON
+imgElement.alt = album.title;
+cardImg.appendChild(imgElement);
+
+// Aggiungi icona play
+const play = document.createElement('i');
+play.className =
+  'bi bi-play-fill bg-success position-absolute d-flex align-items-center justify-content-center fs-4 d-none';
+play.style.bottom = '10px';
+play.style.right = '10px';
+play.style.width = '40px';
+play.style.height = '40px';
+play.style.borderRadius = '50%';
+cardImg.appendChild(play);
+
+cardDiv.appendChild(cardImg);
+
+// Mostra il pulsante play al passaggio del mouse
+cardImg.addEventListener('mouseover', () => {
+  play.classList.remove('d-none');
+});
+
+// Nascondi il pulsante play quando il mouse lascia l'immagine
+cardImg.addEventListener('mouseout', () => {
+  play.classList.add('d-none');
+});
