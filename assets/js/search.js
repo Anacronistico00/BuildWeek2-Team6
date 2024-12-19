@@ -6,6 +6,37 @@ const searchInput = document.querySelector('input[type="text"]');
 const searchResultsContainer = document.getElementById('searchResults'); // Contenitore per i risultati
 const audioPlayer = new Audio(); // Creazione del player audio
 
+document.addEventListener('load', init());
+function init() {
+  changeColor();
+}
+function getRandomColor() {
+  const colors = [
+    '#E13300',
+    '#1E3264',
+    '#E8115C',
+    '#158A08',
+    '#BC5800',
+    '#8C67AC',
+    '#777777',
+    '#503750',
+    '#0D73EC',
+    '#8400E7',
+    '#006450',
+  ];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
+function changeColor() {
+  const cards = document.querySelectorAll('.searchCard');
+
+  cards.forEach((card) => {
+    const randomColor = getRandomColor();
+    card.style.backgroundColor = randomColor;
+  });
+}
+
 // Funzione per cercare le canzoni basandosi sulla query dell'utente
 async function searchSongs(query) {
   try {
@@ -22,10 +53,15 @@ async function searchSongs(query) {
 // Funzione per gestire la ricerca
 async function handleSearch(event) {
   const query = event.target.value.trim();
+  const browseSection = document.getElementById('browseSection');
+  const browseContainer = document.getElementById('browseContainer');
 
-  // Se la query è vuota, svuota i risultati
+  browseSection.style.display = 'none';
+  browseContainer.style.display = 'none';
   if (!query) {
     searchResultsContainer.innerHTML = '';
+    browseSection.style.display = 'block';
+    browseContainer.style.display = 'flex';
     return;
   }
 
@@ -83,7 +119,6 @@ function renderSearchResults(results) {
     const duration = document.createElement('p');
     const minutes = Math.floor(song.duration / 60);
     const seconds = song.duration % 60;
-
     duration.textContent = `Durata: ${minutes}:${
       seconds < 10 ? '0' : ''
     }${seconds}`;
@@ -103,15 +138,12 @@ function renderSearchResults(results) {
     playButton.style.border = 'none';
     playButton.style.borderRadius = '5px';
 
-    console.log(playlist);
-
     // Evento click per riprodurre la traccia
     playButton.addEventListener('click', () => {
-      let songIndex = playlist.findIndex((song) => song.album.id === song.id);
-      console.log(song.album.id);
-
-      fetchSongs(`${song.album.id}`, songIndex);
-
+      let id = song.id;
+      fetchSongs(`${song.album.id}`, id);
+      console.log(playlist);
+      updateHeartIcon();
       setTimeout(() => {
         audioElement.play();
         updatePlayButton(true); // Aggiorna bottone a "Pausa"
