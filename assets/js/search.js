@@ -4,6 +4,8 @@ const searchApiUrl =
 // Elementi della pagina
 const searchInput = document.querySelector('input[type="text"]');
 const searchResultsContainer = document.getElementById('searchResults'); // Contenitore per i risultati
+const browseSection = document.querySelector('h2.text-center'); // Titolo "Sfoglia tutto"
+const browseContainer = document.querySelector('.row.row-cols-2'); // Contenitore sottostante
 const audioPlayer = new Audio(); // Creazione del player audio
 
 // Funzione per cercare le canzoni basandosi sulla query dell'utente
@@ -23,11 +25,17 @@ async function searchSongs(query) {
 async function handleSearch(event) {
   const query = event.target.value.trim();
 
-  // Se la query è vuota, svuota i risultati
+  // Se la query Ã¨ vuota, svuota i risultati e mostra "Sfoglia tutto"
   if (!query) {
     searchResultsContainer.innerHTML = '';
+    browseSection.style.display = 'block'; // Mostra il titolo "Sfoglia tutto"
+    browseContainer.style.display = 'flex'; // Mostra il contenitore sottostante
     return;
   }
+
+  // Nascondi "Sfoglia tutto" e i contenuti sottostanti
+  browseSection.style.display = 'none'; // Nascondi il titolo "Sfoglia tutto"
+  browseContainer.style.display = 'none'; // Nascondi il contenitore sottostante
 
   // Cerca le canzoni basandosi sulla query
   const results = await searchSongs(query);
@@ -104,11 +112,8 @@ function renderSearchResults(results) {
 
     // Evento click per riprodurre la traccia
     playButton.addEventListener('click', () => {
-      fetchSongs(`${song.album.id}`);
-      setTimeout(() => {
-        audioElement.play();
-        updatePlayButton(true); // Aggiorna bottone a "Pausa"
-      }, 1000);
+      audioPlayer.src = song.preview;
+      audioPlayer.play();
       console.log(`Riproduzione di: ${song.title} - ${song.artist.name}`);
     });
 
