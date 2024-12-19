@@ -19,11 +19,11 @@ const albumCover = document.querySelector('#albumCover img'); // Copertina album
 document.addEventListener('load', init());
 function init() {
   loadPlaylistFromLocalStorage(); // Carica i brani salvati
-  fetchSongs('664052151'); // Caricamento iniziale delle tracce
+  fetchSongs('664052151', currentTrackIndex); // Caricamento iniziale delle tracce
 }
 
 // Funzione per recuperare le tracce dall'API
-async function fetchSongs(albumId) {
+async function fetchSongs(albumId, index) {
   try {
     const response = await fetch(
       `https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`
@@ -31,9 +31,8 @@ async function fetchSongs(albumId) {
     if (!response.ok) throw new Error('Errore nel recupero delle tracce');
     const data = await response.json();
     playlist = data.tracks.data; // Salva le tracce
-    console.log(playlist);
 
-    loadTrack(currentTrackIndex);
+    loadTrack(index);
   } catch (error) {
     console.error('Errore:', error);
   }

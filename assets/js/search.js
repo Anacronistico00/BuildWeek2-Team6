@@ -4,8 +4,6 @@ const searchApiUrl =
 // Elementi della pagina
 const searchInput = document.querySelector('input[type="text"]');
 const searchResultsContainer = document.getElementById('searchResults'); // Contenitore per i risultati
-const browseSection = document.querySelector('h2.text-center'); // Titolo "Sfoglia tutto"
-const browseContainer = document.querySelector('.row.row-cols-2'); // Contenitore sottostante
 const audioPlayer = new Audio(); // Creazione del player audio
 
 // Funzione per cercare le canzoni basandosi sulla query dell'utente
@@ -25,17 +23,11 @@ async function searchSongs(query) {
 async function handleSearch(event) {
   const query = event.target.value.trim();
 
-  // Se la query Ã¨ vuota, svuota i risultati e mostra "Sfoglia tutto"
+  // Se la query è vuota, svuota i risultati
   if (!query) {
     searchResultsContainer.innerHTML = '';
-    browseSection.style.display = 'block'; // Mostra il titolo "Sfoglia tutto"
-    browseContainer.style.display = 'flex'; // Mostra il contenitore sottostante
     return;
   }
-
-  // Nascondi "Sfoglia tutto" e i contenuti sottostanti
-  browseSection.style.display = 'none'; // Nascondi il titolo "Sfoglia tutto"
-  browseContainer.style.display = 'none'; // Nascondi il contenitore sottostante
 
   // Cerca le canzoni basandosi sulla query
   const results = await searchSongs(query);
@@ -91,6 +83,7 @@ function renderSearchResults(results) {
     const duration = document.createElement('p');
     const minutes = Math.floor(song.duration / 60);
     const seconds = song.duration % 60;
+
     duration.textContent = `Durata: ${minutes}:${
       seconds < 10 ? '0' : ''
     }${seconds}`;
@@ -110,10 +103,19 @@ function renderSearchResults(results) {
     playButton.style.border = 'none';
     playButton.style.borderRadius = '5px';
 
+    console.log(playlist);
+
     // Evento click per riprodurre la traccia
     playButton.addEventListener('click', () => {
-      audioPlayer.src = song.preview;
-      audioPlayer.play();
+      let songIndex = playlist.findIndex((song) => song.album.id === song.id);
+      console.log(song.album.id);
+
+      fetchSongs(`${song.album.id}`, songIndex);
+
+      setTimeout(() => {
+        audioElement.play();
+        updatePlayButton(true); // Aggiorna bottone a "Pausa"
+      }, 1000);
       console.log(`Riproduzione di: ${song.title} - ${song.artist.name}`);
     });
 
