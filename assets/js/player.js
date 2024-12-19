@@ -56,6 +56,7 @@ function loadTrack(index) {
     trackTitleLg.innerHTML = `<a href="album.html?id=${track.album.id}" class="text-white">${track.title}</a>`; // Aggiorna il titolo
     trackArtistLg.textContent = track.artist.name; // Aggiorna l'artista
     albumCover.src = track.album.cover_medium; // Aggiorna la copertina
+    trackArtistLg.innerHTML = `<a href="artist.html?id=${track.artist.id}" class="text-white">${track.artist.name}</a>`; // Aggiorna il titolo
   }
 }
 

@@ -9,6 +9,9 @@ document.addEventListener('load', init());
 
 function init() {
   fetchCardsMain();
+  setTimeout(() => {
+    updateHeartIcon();
+  }, 1000);
 }
 
 hideDiv.addEventListener('click', function (e) {
@@ -159,7 +162,7 @@ function fetchAndDisplayRandom() {
 
 function fetchCardsMain() {
   //FUNZIONE SCIANTAL
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 10; i++) {
     fetchAndDisplayRandom();
   }
 }

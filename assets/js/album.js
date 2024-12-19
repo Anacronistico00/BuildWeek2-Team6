@@ -17,7 +17,7 @@ const albumDuration = document.getElementById('albumDuration');
 async function fetchSongs(id) {
   try {
     const response = await fetch(
-      `https://striveschool-api.herokuapp.com/api/deezer/album/${id}`
+      `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`
     );
     const data = await response.json();
     console.log('Canzoni ricevute:', data); // Debug: stampa le canzoni

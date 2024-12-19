@@ -110,6 +110,10 @@ p {
   .bi-collection {
     font-size: 1.3em;
   }
+
+  #artistContainer {
+    margin-bottom: 120px;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -348,6 +352,10 @@ main {
   position: absolute;
   bottom: 16px;
   left: 16px;
+}
+
+.durationAndListening {
+  font-size: 0.8em;
 }
 
 @media screen and (min-width: 992px) {
