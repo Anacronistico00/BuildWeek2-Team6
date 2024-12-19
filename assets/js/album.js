@@ -1,10 +1,7 @@
 const albumId = new URLSearchParams(window.location.search).get('id');
-console.log(albumId); // Debug: stampa l'ID dell'album
 
-// Elementi della pagina
-const songsContainer = document.getElementById('songsContainer'); // Contenitore per la lista delle canzoni
+const songsContainer = document.getElementById('songsContainer');
 
-//funzione per caricare i dati dell'album nel DOM
 const albumImg = document.getElementById('albumImage');
 const albumTitle = document.getElementById('albumTitle');
 const artistName = document.getElementById('artistName');
@@ -13,35 +10,32 @@ const albumReleaseLg = document.getElementById('albumReleaseLg');
 const songsNum = document.getElementById('songsNum');
 const albumDuration = document.getElementById('albumDuration');
 
-// Funzione per recuperare le tracce di un album dall'API
-async function fetchSongs(id) {
+async function fetchAlbum(id) {
   try {
     const response = await fetch(
-      `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`
+      `https://striveschool-api.herokuapp.com/api/deezer/album/${id}`
     );
     const data = await response.json();
-    console.log('Canzoni ricevute:', data); // Debug: stampa le canzoni
+    console.log('Canzoni ricevute:', data);
     printAlbum(data);
-    renderSongs(data.tracks.data); // Chiama la funzione per mostrare le canzoni
+    renderSongs(data.tracks.data);
   } catch (error) {
     console.error('Errore nel caricamento delle canzoni:', error);
   }
 }
 
 function printAlbum(data) {
-  albumImg.src = data.cover;
-  albumTitle.textContent = data.tracks.data[0].album.title;
+  albumImg.src = data.cover_medium || data.cover;
+  albumTitle.textContent = data.title;
   artistName.textContent = data.artist.name;
   const year = data.release_date.substring(0, 4);
   albumReleaseSm.textContent = year;
-  albumReleaseLg.innerText += year;
+  albumReleaseLg.innerText = year;
   songsNum.textContent = data.tracks.data.length;
-  albumDuration.textContent = Math.floor(data.duration / 60);
+  albumDuration.textContent = formatDuration(data.duration);
 }
 
-// Funzione per mostrare le canzoni nel DOM
 function renderSongs(songs) {
-  // Svuota il contenitore
   songsContainer.innerHTML = '';
 
   if (songs.length === 0) {
@@ -50,7 +44,6 @@ function renderSongs(songs) {
     return;
   }
 
-  // Crea la lista delle canzoni
   const ul = document.createElement('ul');
   ul.style.listStyle = 'none';
   ul.classList.add('container-fluid');
@@ -62,8 +55,6 @@ function renderSongs(songs) {
     li.style.display = 'flex';
     li.style.alignItems = 'center';
     li.style.marginBottom = '15px';
-
-    // Dettagli della canzone
 
     const index = document.createElement('div');
     index.classList.add('col-1');
@@ -97,8 +88,7 @@ function renderSongs(songs) {
     duration.classList.add('col-2');
 
     const durationP = document.createElement('p');
-    const tofixed = song.duration / 60;
-    durationP.textContent = `${tofixed.toFixed(2)} min.`;
+    durationP.textContent = formatDuration(song.duration);
     duration.appendChild(durationP);
 
     details.appendChild(title);
@@ -114,14 +104,20 @@ function renderSongs(songs) {
   songsContainer.appendChild(ul);
 }
 
-// Funzione di inizializzazione
+function formatDuration(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  const paddedSeconds = remainingSeconds.toString().padStart(2, '0');
+  return `${minutes}:${paddedSeconds}`;
+}
+
 function init() {
   console.log('Inizializzazione...');
-  fetchSongs(albumId); // Caricamento iniziale delle tracce
+  fetchAlbum(albumId);
   setTimeout(() => {
     updateHeartIcon();
   }, 500);
 }
 
-// Esegui l'inizializzazione al caricamento della pagina
 document.addEventListener('DOMContentLoaded', init);

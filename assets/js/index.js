@@ -24,7 +24,6 @@ hideDiv.addEventListener('click', function (e) {
 // klajdi non è più cosa mia
 
 function fetchAndDisplayData() {
-  // Genera un numero intero casuale per 'query'
   let query = Math.floor(Math.random() * 1000 + 1);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/top?limit=1`;
 
@@ -37,7 +36,6 @@ function fetchAndDisplayData() {
       }
       console.log(songs);
 
-      //const songs = data;
       songs.forEach((item) => {
         randomImg.src = item.album.cover;
         randomImg.alt = item.album.title;
@@ -48,7 +46,7 @@ function fetchAndDisplayData() {
           fetchSongs(`${item.album.id}`);
           setTimeout(() => {
             audioElement.play();
-            updatePlayButton(true); // Aggiorna bottone a "Pausa"
+            updatePlayButton(true);
           }, 1000);
         });
         console.log(`ID: ${item.id}, Nome: ${item.album.title}`);
@@ -77,7 +75,6 @@ const classConfig = {
 };
 
 function fetchAndDisplayRandom() {
-  // Genera un numero intero casuale per 'query'
   let query = Math.floor(Math.random() * 1000 + 2);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/albums`;
 
@@ -85,7 +82,6 @@ function fetchAndDisplayRandom() {
     .then((response) => response.json())
     .then((data) => {
       if (data.data && data.data.length > 0) {
-        // Seleziona un album casuale dall'elenco
         const randomIndex = Math.floor(Math.random() * data.data.length);
         const album = data.data[randomIndex];
 
@@ -94,25 +90,21 @@ function fetchAndDisplayRandom() {
         const mainContainer = document.getElementById('fetchCards');
         mainContainer.classList.add('row');
 
-        // Crea un div per il contenitore della card
         const containerDiv = document.createElement('div');
         containerDiv.className = classConfig.containerClass;
 
-        // Crea l'elemento della card
         const cardDiv = document.createElement('div');
         cardDiv.className = classConfig.cardClass;
 
         const cardImg = document.createElement('div');
         cardImg.className = 'position-relative';
 
-        // Aggiungi l'immagine alla card
         const imgElement = document.createElement('img');
         imgElement.className = classConfig.imageClass;
-        imgElement.src = album.cover; // Usa l'URL dell'immagine dal JSON
+        imgElement.src = album.cover;
         imgElement.alt = album.title;
         cardImg.appendChild(imgElement);
 
-        // Aggiungi icona play
         const play = document.createElement('i');
         play.className =
           'bi bi-play-fill bg-success position-absolute d-flex align-items-center justify-content-center fs-4 d-none';
@@ -125,33 +117,26 @@ function fetchAndDisplayRandom() {
 
         cardDiv.appendChild(cardImg);
 
-        // Mostra il pulsante play al passaggio del mouse
         cardDiv.addEventListener('mouseover', () => {
           play.classList.remove('d-none');
         });
 
-        // Nascondi il pulsante play quando il mouse lascia l'immagine
         cardDiv.addEventListener('mouseout', () => {
           play.classList.add('d-none');
         });
 
-        // Crea il corpo della card
         const cardBody = document.createElement('div');
         cardBody.className = classConfig.bodyClass;
 
-        // Aggiungi il titolo
         const titleElement = document.createElement('h5');
         titleElement.className = classConfig.titleClass;
         titleElement.textContent = album.title;
         cardBody.appendChild(titleElement);
 
-        // Aggiungi il corpo alla card
         cardDiv.appendChild(cardBody);
 
-        // Aggiungi la card al contenitore
         containerDiv.appendChild(cardDiv);
 
-        // Aggiungi il contenitore al mainContainer nel DOM
         mainContainer.appendChild(containerDiv);
       } else {
         console.warn('Nessun album trovato per questo artista.');
