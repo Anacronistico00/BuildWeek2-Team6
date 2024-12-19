@@ -53,11 +53,12 @@ function renderSongs(songs) {
   // Crea la lista delle canzoni
   const ul = document.createElement('ul');
   ul.style.listStyle = 'none';
+  ul.classList.add('container-fluid');
   ul.style.padding = '0';
-
+  let i = 0;
   songs.forEach((song) => {
     const li = document.createElement('li');
-    li.classList.add('container-fluid', 'd-flex');
+    li.classList.add('container-fluid', 'row');
     li.style.display = 'flex';
     li.style.alignItems = 'center';
     li.style.marginBottom = '15px';
@@ -65,27 +66,48 @@ function renderSongs(songs) {
     // Dettagli della canzone
 
     const index = document.createElement('div');
+    index.classList.add('col-1');
+    const newP = document.createElement('p');
+    i++;
+    newP.innerText = i;
+
+    index.appendChild(newP);
+
     const details = document.createElement('div');
+    details.classList.add('col-6');
 
     const title = document.createElement('p');
     title.textContent = `${song.title}`;
     title.style.color = 'white';
     title.style.margin = '0';
 
-    const duration = document.createElement('p');
-    const minutes = Math.floor(song.duration / 60);
-    const seconds = song.duration % 60;
-    duration.textContent = `Durata: ${minutes}:${
-      seconds < 10 ? '0' : ''
-    }${seconds}`;
-    duration.style.color = '#aaa';
-    duration.style.margin = '0';
+    const artist = document.createElement('p');
+    artist.textContent = song.artist.name;
+    artist.style.color = '#aaa';
+    artist.style.margin = '0';
+
+    const reproduction = document.createElement('div');
+    reproduction.classList.add('col-3');
+
+    const totalP = document.createElement('p');
+    totalP.textContent = Math.floor(Math.random() * 9999999);
+    reproduction.appendChild(totalP);
+
+    const duration = document.createElement('div');
+    duration.classList.add('col-2');
+
+    const durationP = document.createElement('p');
+    const tofixed = song.duration / 60;
+    durationP.textContent = `${tofixed.toFixed(2)} min.`;
+    duration.appendChild(durationP);
 
     details.appendChild(title);
-    details.appendChild(duration);
+    details.appendChild(artist);
 
+    li.appendChild(index);
     li.appendChild(details);
-
+    li.appendChild(reproduction);
+    li.appendChild(duration);
     ul.appendChild(li);
   });
 
