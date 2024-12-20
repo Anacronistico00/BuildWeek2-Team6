@@ -89,6 +89,7 @@ function renderSongs(songs) {
       loadTrack(currentTrackIndex);
       audioElement.play();
       updatePlayButton(true);
+      updateHeartIcon();
     });
 
     const artist = document.createElement('p');
@@ -152,6 +153,7 @@ playAlbumButton.addEventListener('click', () => {
   loadTrack(currentTrackIndex);
   audioElement.play();
   updatePlayButton(true);
+  updateHeartIcon();
 });
 
 document.addEventListener('DOMContentLoaded', init);

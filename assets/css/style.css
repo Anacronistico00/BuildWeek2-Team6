@@ -56,7 +56,7 @@ p {
   padding: 12px;
 }
 #savedPlaylistItems {
-  height: 56vh;
+  height: 60vh;
   overflow: scroll;
 }
 
@@ -99,6 +99,10 @@ p {
   height: 100px;
 }
 
+.card {
+  border: none;
+}
+
 @media screen and (max-width: 991px) {
   .navigation {
     padding: 0;
@@ -135,6 +139,10 @@ p {
   #artistContainer {
     margin-bottom: 120px;
   }
+}
+
+.friends {
+  font-size: 1.2em;
 }
 
 @media screen and (min-width: 992px) {
@@ -348,6 +356,10 @@ main {
   margin-bottom: 140px;
 }
 
+.searchList:hover {
+  background-color: #2d2d2d;
+}
+
 /*ARTIST*/
 #bgArtistImg {
   height: 40vh;
@@ -387,10 +399,12 @@ main {
   text-decoration: underline;
 }
 
+.card-title a,
 #trackInfo a {
   text-decoration: none;
 }
 
+.card-title a:hover,
 #trackInfo a:hover,
 .trackInfo:hover,
 .songTitleInAlbum:hover,
@@ -398,10 +412,21 @@ main {
   text-decoration: underline;
 }
 
+.card-title a,
 .trackInfo,
 .songTitleInAlbum,
 .favoriteTitle {
   cursor: pointer;
+}
+
+/*SAVED PLAYLIST*/
+
+#savedPlaylistContainer {
+  padding-left: 12px;
+}
+
+#savedPlaylistItems li {
+  padding-right: 15px;
 }
 
 @media screen and (min-width: 992px) {

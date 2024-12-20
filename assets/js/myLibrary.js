@@ -1,5 +1,6 @@
 const savedSongsContainer = document.getElementById('savedSongsContainer');
 
+// Funzione per caricare le canzoni salvate nel localStorage
 function loadSavedSongs() {
   const savedData = localStorage.getItem('savedPlaylist');
   if (savedData) {
@@ -17,6 +18,7 @@ function loadSavedSongs() {
   }
 }
 
+// Funzione per mostrare le canzoni salvate
 function renderSavedSongs(songs) {
   savedSongsContainer.innerHTML = '';
 
@@ -46,19 +48,22 @@ function renderSavedSongs(songs) {
     const details = document.createElement('div');
     details.style.flex = '1';
 
+    // Titolo della canzone
     const title = document.createElement('p');
     title.textContent = song.title;
     title.style.color = 'white';
     title.style.margin = '0';
-    title.classList.add('favoriteTitle');
+    title.style.cursor = 'pointer'; // Cambia il cursore al passaggio del mouse
+    title.style.textDecoration = 'none'; // Rimuove l'underline di default
 
-    const author = document.createElement('p');
-    author.textContent = song.artist.name;
-    author.style.color = '#ccc';
-    author.style.margin = '0';
+    title.addEventListener('mouseover', () => {
+      title.style.textDecoration = 'underline';
+      title.style.textDecorationColor = 'white'; // Colore bianco per l'underline
+    });
 
-    details.appendChild(title);
-    details.appendChild(author);
+    title.addEventListener('mouseout', () => {
+      title.style.textDecoration = 'none';
+    });
 
     title.addEventListener('click', () => {
       const savedData = localStorage.getItem('savedPlaylist');
@@ -87,6 +92,31 @@ function renderSavedSongs(songs) {
       }
     });
 
+    // Artista della canzone
+    const author = document.createElement('p');
+    author.textContent = song.artist.name;
+    author.style.color = '#ccc';
+    author.style.margin = '0';
+    author.style.cursor = 'pointer'; // Cambia il cursore al passaggio del mouse
+    author.style.textDecoration = 'none'; // Rimuove l'underline di default
+
+    author.addEventListener('mouseover', () => {
+      author.style.textDecoration = 'underline';
+      author.style.textDecorationColor = 'white'; // Colore bianco per l'underline
+    });
+
+    author.addEventListener('mouseout', () => {
+      author.style.textDecoration = 'none';
+    });
+
+    author.addEventListener('click', () => {
+      // Reindirizza alla pagina dell'artista
+      window.location.href = `artist.html?id=${song.artist.id}`;
+    });
+
+    details.appendChild(title);
+    details.appendChild(author);
+
     const heartIcon = document.createElement('i');
     heartIcon.className = 'bi bi-heart-fill ms-3 text-success';
     heartIcon.style.cursor = 'pointer';
@@ -104,6 +134,7 @@ function renderSavedSongs(songs) {
   savedSongsContainer.appendChild(ul);
 }
 
+// Rimuove un brano dalla playlist salvata
 function removeTrackFromSavedPlaylist(index) {
   const savedData = localStorage.getItem('savedPlaylist');
   if (savedData) {
@@ -114,6 +145,7 @@ function removeTrackFromSavedPlaylist(index) {
   }
 }
 
+// Inizializzazione
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Pagina La Mia Libreria inizializzata.');
   loadSavedSongs();

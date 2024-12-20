@@ -58,7 +58,7 @@ function fetchHomePage() {
 
 const classConfig = {
   containerClass: 'p-1',
-  cardClass: 'card bg-dark text-white',
+  cardClass: 'card bg-transparent text-white',
   imageClass: 'card-img-top',
   bodyClass: 'card-body',
   titleClass: 'card-title',
@@ -136,10 +136,14 @@ function fetchAndDisplayRandom() {
 
         cardDiv.addEventListener('mouseover', () => {
           play.classList.remove('d-none');
+          cardDiv.classList.remove('bg-transparent');
+          cardDiv.classList.add('bg-dark');
         });
 
         cardDiv.addEventListener('mouseout', () => {
           play.classList.add('d-none');
+          cardDiv.classList.remove('bg-dark');
+          cardDiv.classList.add('bg-transparent');
         });
 
         const cardBody = document.createElement('div');

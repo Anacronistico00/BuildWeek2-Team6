@@ -1,6 +1,15 @@
 let savedPlaylist = [];
 const heartIcon = document.querySelectorAll('.filledHeart');
 
+const favoritesSong = document.querySelector('.openCloseFav');
+const savedPlaylistContainer = document.getElementById(
+  'savedPlaylistContainer'
+);
+favoritesSong.addEventListener('click', function () {
+  savedPlaylistContainer.classList.toggle('d-none');
+  savedPlaylistContainer.classList.toggle('d-block');
+});
+
 function togglePlaylist() {
   const currentTrack = playlist[currentTrackIndex];
 

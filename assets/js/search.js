@@ -39,6 +39,36 @@ function changeColor() {
   });
 }
 
+function printAlbum(data) {
+  albumImg.src = data.cover_medium || data.cover;
+  albumTitle.textContent = data.title;
+  artistName.textContent = data.artist.name;
+  const year = data.release_date.substring(0, 4);
+  albumReleaseSm.textContent = year;
+  albumReleaseLg.innerText = year;
+  songsNum.textContent = data.tracks.data.length;
+  albumDuration.textContent = formatDuration(data.duration);
+}
+
+async function fetchAlbum(albumId) {
+  try {
+    const response = await fetch(
+      `https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`
+    );
+    if (!response.ok) throw new Error('Errore nel recupero delle tracce');
+    const data = await response.json();
+    playlist = data.tracks.data;
+    albumTracks = playlist;
+    console.log(playlist);
+    loadTrack(currentTrackIndex);
+    //printAlbum(data);
+    // renderSongs(playlist);
+    return data;
+  } catch (error) {
+    console.error('Errore:', error);
+  }
+}
+
 async function searchSongs(query) {
   try {
     const response = await fetch(`${searchApiUrl}${query}`);
@@ -87,12 +117,33 @@ function renderSearchResults(results) {
     li.style.display = 'flex';
     li.style.alignItems = 'center';
     li.style.marginBottom = '15px';
+    li.classList.add('searchList');
+    li.addEventListener('click', () => {
+      playlist = [];
+      const trackIndex = playlist.findIndex((track) => track.id === song.id);
+      if (trackIndex === -1) {
+        playlist.push(song);
+        const album = fetchAlbum(song.album.id);
+        console.log('album ', album);
+        console.log('SCIANTALLL -> ', song);
+        currentTrackIndex = playlist.length - 1;
+      } else {
+        currentTrackIndex = trackIndex;
+      }
+
+      loadTrack(currentTrackIndex);
+      setTimeout(() => {
+        nextTrackHandler();
+        audioElement.play();
+        updatePlayButton(true);
+      }, 1000);
+    });
 
     const img = document.createElement('img');
     img.src = song.album.cover_small;
     img.alt = song.title;
-    img.style.width = '50px';
-    img.style.height = '50px';
+    img.style.width = '80px';
+    img.style.height = '80px';
     img.style.marginRight = '15px';
 
     const details = document.createElement('div');
@@ -121,32 +172,8 @@ function renderSearchResults(results) {
     details.appendChild(author);
     details.appendChild(duration);
 
-    const playButton = document.createElement('button');
-    playButton.textContent = 'Play';
-    playButton.style.marginLeft = '15px';
-    playButton.style.backgroundColor = '#1db954';
-    playButton.style.color = 'white';
-    playButton.style.border = 'none';
-    playButton.style.borderRadius = '5px';
-
-    playButton.addEventListener('click', () => {
-      const trackIndex = playlist.findIndex((track) => track.id === song.id);
-      if (trackIndex === -1) {
-        playlist.push(song);
-        currentTrackIndex = playlist.length - 1;
-      } else {
-        currentTrackIndex = trackIndex;
-      }
-
-      loadTrack(currentTrackIndex);
-      audioElement.play();
-      updatePlayButton(true);
-      updateHeartIcon();
-    });
-
     li.appendChild(img);
     li.appendChild(details);
-    li.appendChild(playButton);
 
     ul.appendChild(li);
   });
