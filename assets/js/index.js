@@ -23,7 +23,7 @@ hideDiv.addEventListener('click', function (e) {
 });
 
 function fetchAndDisplayData() {
-  let query = Math.floor(Math.random() * 1000 + 1);
+  let query = Math.floor(Math.random() * 999 + 1);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/top?limit=1`;
 
   fetch(endpoint)

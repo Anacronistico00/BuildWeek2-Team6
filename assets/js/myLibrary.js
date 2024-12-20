@@ -37,6 +37,7 @@ function renderSavedSongs(songs) {
     li.style.display = 'flex';
     li.style.alignItems = 'center';
     li.style.marginBottom = '15px';
+    li.classList.add('favList');
 
     const img = document.createElement('img');
     img.src = song.album.cover_small;

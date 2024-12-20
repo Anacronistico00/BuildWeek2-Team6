@@ -264,7 +264,8 @@ main {
   background-color: #121212;
 }
 
-.cardDiv:hover {
+.cardDiv:hover,
+.favList:hover {
   background-color: #1d1c1c;
   cursor: pointer;
 }
