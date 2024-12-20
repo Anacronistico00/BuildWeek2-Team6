@@ -393,12 +393,14 @@ main {
 
 #trackInfo a:hover,
 .trackInfo:hover,
-.songTitleInAlbum:hover {
+.songTitleInAlbum:hover,
+.favoriteTitle:hover {
   text-decoration: underline;
 }
 
 .trackInfo,
-.songTitleInAlbum {
+.songTitleInAlbum,
+.favoriteTitle {
   cursor: pointer;
 }
 

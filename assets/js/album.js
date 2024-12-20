@@ -9,6 +9,7 @@ const albumReleaseSm = document.getElementById('albumReleaseSm');
 const albumReleaseLg = document.getElementById('albumReleaseLg');
 const songsNum = document.getElementById('songsNum');
 const albumDuration = document.getElementById('albumDuration');
+const albumHeart = document.querySelector('.albumHeart');
 
 async function fetchAlbum(albumId) {
   try {
@@ -154,3 +155,7 @@ playAlbumButton.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', init);
+
+albumHeart.addEventListener('click', function () {
+  albumHeart.classList.toggle('text-success');
+});

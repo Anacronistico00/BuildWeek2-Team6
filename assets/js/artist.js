@@ -79,6 +79,8 @@ class ArtistPage {
     elements.artistName.textContent = artist.name;
     elements.monthly.innerHTML = `<span>${millions}</span>.<span>${thousands1}</span>.<span>${thousands2}</span>`;
     elements.artistImgRounded.src = artist.picture;
+    const artistSideName = document.getElementById('artistSideName');
+    artistSideName.textContent = artist.name;
   }
 
   async renderTopSongs(artist) {

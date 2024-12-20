@@ -141,6 +141,7 @@ function renderSearchResults(results) {
       loadTrack(currentTrackIndex);
       audioElement.play();
       updatePlayButton(true);
+      updateHeartIcon();
     });
 
     li.appendChild(img);

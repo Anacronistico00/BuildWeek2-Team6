@@ -50,6 +50,7 @@ function renderSavedSongs(songs) {
     title.textContent = song.title;
     title.style.color = 'white';
     title.style.margin = '0';
+    title.classList.add('favoriteTitle');
 
     const author = document.createElement('p');
     author.textContent = song.artist.name;
