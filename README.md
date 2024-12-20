@@ -1,6 +1,6 @@
 # BuildWeek2-Team6
 **Descrizione del Progetto**
-Questo progetto rappresenta un'applicazione web ispirata a un'interfaccia di lettore musicale (simi-le a Spotify). L'interfaccia è stata sviluppata con HTML, CSS (Bootstrap) e JavaScript per offrire un layout responsive adattabile sia a layout mobile che a layout desktop e user-friendly. 
+Questo progetto rappresenta un'applicazione web ispirata a un'interfaccia di lettore musicale (simile a Spotify). L'interfaccia è stata sviluppata con HTML, CSS (Bootstrap) e JavaScript per offrire un layout responsive adattabile sia a layout mobile che a layout desktop e user-friendly. 
  Più dettagliatamente il progetto è suddiviso in cinque pagine: Home, Album, Artist, Search e Library.
 
 
