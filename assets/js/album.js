@@ -142,9 +142,18 @@ function init() {
 const playAlbumButton = document.getElementById('playAlbum');
 
 playAlbumButton.addEventListener('click', () => {
-  loadTrack(currentTrackIndex);
-  audioElement.play();
-  updatePlayButton(true);
+  if (!playlist || playlist.length === 0) {
+    console.error('Playlist non trovata o vuota!');
+    return;
+  }
+
+  // Imposta il player globale con la playlist dell'album
+  playlist = [...albumTracks]; // `albumTracks` è un array con tutte le tracce dell'album
+  currentTrackIndex = 0; // Riproduci dalla prima traccia
+  renderSongs(playlist);
+  loadTrack(currentTrackIndex); // Carica la prima traccia
+  audioElement.play(); // Avvia la riproduzione
+  updatePlayButton(true); // Aggiorna l'icona del pulsante di riproduzione
 });
 
 document.addEventListener('DOMContentLoaded', init);

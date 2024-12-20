@@ -51,7 +51,6 @@ class ArtistPage {
   setupEventListeners() {
     elements.playButton.addEventListener('click', () => {
       if (this.tracks.length > 0) {
-        // Se la playlist è vuota, carica le tracce dell'artista
         if (playlist.length === 0) {
           playlist = [...this.tracks];
         }
@@ -119,7 +118,6 @@ class ArtistPage {
         }
       });
 
-      // Carica la prima traccia nel player (senza riprodurla)
       loadTrack(0);
       updateHeartIcon();
     } catch (error) {

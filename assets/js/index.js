@@ -5,9 +5,12 @@ let randomArtist = document.getElementById('randomArtist');
 const hideDiv = document.getElementById('hideDiv');
 const randomSongBtn = document.getElementById('randomSongBtn');
 
-document.addEventListener('load', init());
+document.addEventListener('DOMContentLoaded', init);
+
+let currentlyPlayingCard = null; // Traccia la card attualmente in riproduzione
 
 function init() {
+  fetchAndDisplayData();
   fetchCardsMain();
   setTimeout(() => {
     updateHeartIcon();
@@ -19,10 +22,7 @@ hideDiv.addEventListener('click', function (e) {
   randomSong.classList.add('d-none');
 });
 
-//Klajdi non c'è
-//è andato via
-// klajdi non è più cosa mia
-
+// Funzione per caricare e mostrare dati casuali nella sezione randomSong
 function fetchAndDisplayData() {
   let query = Math.floor(Math.random() * 1000 + 1);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/top?limit=1`;
@@ -32,36 +32,30 @@ function fetchAndDisplayData() {
     .then((data) => {
       const songs = data.data;
       if (songs.length === 0) {
-        fetchAndDisplayData();
-      }
-      console.log(songs);
+        fetchAndDisplayData(); // Riprova se non ci sono dati
+      } else {
+        songs.forEach((item) => {
+          randomImg.src = item.album.cover;
+          randomImg.alt = item.album.title;
+          randomSongTitle.textContent = item.album.title;
+          randomArtist.textContent = item.artist.name;
 
-      songs.forEach((item) => {
-        randomImg.src = item.album.cover;
-        randomImg.alt = item.album.title;
-        randomSongTitle.textContent = item.album.title;
-        randomArtist.textContent = item.artist.name;
-
-        randomSongBtn.addEventListener('click', function () {
-          fetchSongs(`${item.album.id}`);
-          setTimeout(() => {
-            audioElement.play();
-            updatePlayButton(true);
-          }, 1000);
+          randomSongBtn.addEventListener('click', function () {
+            fetchSongs(`${item.album.id}`);
+            setTimeout(() => {
+              audioElement.play();
+              updatePlayButton(true);
+            }, 1000);
+          });
         });
-        console.log(`ID: ${item.id}, Nome: ${item.album.title}`);
-      });
+      }
     })
     .catch((error) => console.error('Errore:', error));
 }
 
 function fetchHomePage() {
-  //FUNZIONE SCIANTAL
-
   fetchAndDisplayData();
 }
-
-fetchHomePage();
 
 const classConfig = {
   containerClass: 'p-1',
@@ -74,6 +68,7 @@ const classConfig = {
   buttonClass: '',
 };
 
+// Funzione per caricare album casuali nella sezione "Altro che potrebbe piacerti"
 function fetchAndDisplayRandom() {
   let query = Math.floor(Math.random() * 1000 + 2);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/albums`;
@@ -115,6 +110,35 @@ function fetchAndDisplayRandom() {
         play.style.borderRadius = '50%';
         cardImg.appendChild(play);
 
+        // Evento per il pulsante Play/Pause
+        play.addEventListener('click', (event) => {
+          event.stopPropagation(); // Previene l'attivazione di eventi click del cardDiv
+
+          // Se una canzone è già in riproduzione, fermala e aggiorna il pulsante
+          if (currentlyPlayingCard && currentlyPlayingCard !== play) {
+            currentlyPlayingCard.classList.remove('bi-pause-fill');
+            currentlyPlayingCard.classList.add('bi-play-fill');
+          }
+
+          // Cambia stato Play/Pause
+          if (!audioElement.paused && currentlyPlayingCard === play) {
+            // Metti in pausa la canzone corrente
+            audioElement.pause();
+            play.classList.remove('bi-pause-fill');
+            play.classList.add('bi-play-fill');
+          } else {
+            // Carica e avvia la nuova canzone
+            fetchSongs(album.id);
+            setTimeout(() => {
+              audioElement.play();
+              updatePlayButton(true);
+              play.classList.remove('bi-play-fill');
+              play.classList.add('bi-pause-fill');
+            }, 1000);
+            currentlyPlayingCard = play; // Aggiorna la card attualmente in riproduzione
+          }
+        });
+
         cardDiv.appendChild(cardImg);
 
         cardDiv.addEventListener('mouseover', () => {
@@ -128,9 +152,10 @@ function fetchAndDisplayRandom() {
         const cardBody = document.createElement('div');
         cardBody.className = classConfig.bodyClass;
 
-        const titleElement = document.createElement('h5');
+        const titleElement = document.createElement('h6');
         titleElement.className = classConfig.titleClass;
-        titleElement.textContent = album.title;
+        titleElement.innerHTML = `<a href="album.html?id=${album.id}" class="text-white">${album.title}</a>`;
+        console.log(album);
         cardBody.appendChild(titleElement);
 
         cardDiv.appendChild(cardBody);
@@ -145,8 +170,8 @@ function fetchAndDisplayRandom() {
     .catch((error) => console.error('Errore:', error));
 }
 
+// Funzione per caricare più card
 function fetchCardsMain() {
-  //FUNZIONE SCIANTAL
   for (let i = 0; i < 10; i++) {
     fetchAndDisplayRandom();
   }
