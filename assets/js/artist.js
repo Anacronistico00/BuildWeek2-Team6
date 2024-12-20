@@ -1,4 +1,3 @@
-// Utility functions
 const formatDuration = (seconds) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60);
@@ -17,11 +16,9 @@ const generateRandomListeners = () => {
   };
 };
 
-// Constants
 const API_BASE_URL = 'https://striveschool-api.herokuapp.com/api/deezer';
 const MAX_TOP_SONGS = 6;
 
-// DOM Elements
 const elements = {
   topSongs: document.getElementById('topSongs'),
   artistCover: document.getElementById('artistCover'),
@@ -30,8 +27,6 @@ const elements = {
   playButton: document.getElementById('playButton'),
   artistImgRounded: document.getElementById('artistImgRounded'),
 };
-
-// Main functionality
 class ArtistPage {
   constructor() {
     this.artistId = new URLSearchParams(window.location.search).get('id');
@@ -104,7 +99,6 @@ class ArtistPage {
         .map((track, index) => this.createTrackHTML(track, index))
         .join('');
 
-      // Aggiunge event listeners per ogni traccia
       this.tracks.forEach((track, index) => {
         const trackElement = document.getElementById(`track-${index}`);
         if (trackElement) {
@@ -165,13 +159,11 @@ class ArtistPage {
   }
 }
 
-// Initialization
 document.addEventListener('DOMContentLoaded', () => {
   const artistPage = new ArtistPage();
   artistPage.init();
 });
 
-// Aggiungi listener per aggiornare lo stile della traccia corrente quando cambia
 audioElement.addEventListener('play', () => {
   const artistPage = window.artistPage;
   if (artistPage) {

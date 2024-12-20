@@ -77,19 +77,17 @@ function renderSongs(songs) {
     title.style.margin = '0';
     title.classList.add('songTitleInAlbum');
     title.addEventListener('click', () => {
-      // Trova l'indice del brano nella playlist o lo aggiunge se non esiste
       const trackIndex = playlist.findIndex((track) => track.id === song.id);
       if (trackIndex === -1) {
-        playlist.push(song); // Aggiungi il brano alla playlist se non esiste
-        currentTrackIndex = playlist.length - 1; // Imposta l'indice attuale all'ultimo brano
+        playlist.push(song);
+        currentTrackIndex = playlist.length - 1;
       } else {
-        currentTrackIndex = trackIndex; // Imposta l'indice attuale al brano esistente
+        currentTrackIndex = trackIndex;
       }
 
-      // Carica e riproduci il brano
       loadTrack(currentTrackIndex);
       audioElement.play();
-      updatePlayButton(true); // Aggiorna l'icona del pulsante di riproduzione
+      updatePlayButton(true);
     });
 
     const artist = document.createElement('p');
@@ -147,13 +145,12 @@ playAlbumButton.addEventListener('click', () => {
     return;
   }
 
-  // Imposta il player globale con la playlist dell'album
-  playlist = [...albumTracks]; // `albumTracks` è un array con tutte le tracce dell'album
-  currentTrackIndex = 0; // Riproduci dalla prima traccia
+  playlist = [...albumTracks];
+  currentTrackIndex = 0;
   renderSongs(playlist);
-  loadTrack(currentTrackIndex); // Carica la prima traccia
-  audioElement.play(); // Avvia la riproduzione
-  updatePlayButton(true); // Aggiorna l'icona del pulsante di riproduzione
+  loadTrack(currentTrackIndex);
+  audioElement.play();
+  updatePlayButton(true);
 });
 
 document.addEventListener('DOMContentLoaded', init);

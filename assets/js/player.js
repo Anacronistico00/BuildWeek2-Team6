@@ -7,7 +7,6 @@ let currentTrackIndex = 0;
 let idBase = 3068802251;
 const audioElement = new Audio();
 
-// Selezione degli elementi HTML
 const playPauseButton = document.querySelector('#playPause');
 const playPauseButton2 = document.querySelector('.play-pause');
 const nextButton = document.querySelector('.bi-skip-end-fill');

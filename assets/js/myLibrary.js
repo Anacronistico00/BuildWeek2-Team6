@@ -1,6 +1,5 @@
 const savedSongsContainer = document.getElementById('savedSongsContainer');
 
-// Funzione per caricare le canzoni salvate nel localStorage
 function loadSavedSongs() {
   const savedData = localStorage.getItem('savedPlaylist');
   if (savedData) {
@@ -18,7 +17,6 @@ function loadSavedSongs() {
   }
 }
 
-// Funzione per mostrare le canzoni salvate
 function renderSavedSongs(songs) {
   savedSongsContainer.innerHTML = '';
 
@@ -105,7 +103,6 @@ function renderSavedSongs(songs) {
   savedSongsContainer.appendChild(ul);
 }
 
-// Rimuove un brano dalla playlist salvata
 function removeTrackFromSavedPlaylist(index) {
   const savedData = localStorage.getItem('savedPlaylist');
   if (savedData) {
@@ -116,7 +113,6 @@ function removeTrackFromSavedPlaylist(index) {
   }
 }
 
-// Inizializzazione
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Pagina La Mia Libreria inizializzata.');
   loadSavedSongs();

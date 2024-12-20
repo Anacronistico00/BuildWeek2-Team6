@@ -7,7 +7,7 @@ const randomSongBtn = document.getElementById('randomSongBtn');
 
 document.addEventListener('DOMContentLoaded', init);
 
-let currentlyPlayingCard = null; // Traccia la card attualmente in riproduzione
+let currentlyPlayingCard = null;
 
 function init() {
   fetchAndDisplayData();
@@ -22,7 +22,6 @@ hideDiv.addEventListener('click', function (e) {
   randomSong.classList.add('d-none');
 });
 
-// Funzione per caricare e mostrare dati casuali nella sezione randomSong
 function fetchAndDisplayData() {
   let query = Math.floor(Math.random() * 1000 + 1);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/top?limit=1`;
@@ -32,7 +31,7 @@ function fetchAndDisplayData() {
     .then((data) => {
       const songs = data.data;
       if (songs.length === 0) {
-        fetchAndDisplayData(); // Riprova se non ci sono dati
+        fetchAndDisplayData();
       } else {
         songs.forEach((item) => {
           randomImg.src = item.album.cover;
@@ -68,7 +67,6 @@ const classConfig = {
   buttonClass: '',
 };
 
-// Funzione per caricare album casuali nella sezione "Altro che potrebbe piacerti"
 function fetchAndDisplayRandom() {
   let query = Math.floor(Math.random() * 1000 + 2);
   const endpoint = `https://striveschool-api.herokuapp.com/api/deezer/artist/${query}/albums`;
@@ -110,24 +108,19 @@ function fetchAndDisplayRandom() {
         play.style.borderRadius = '50%';
         cardImg.appendChild(play);
 
-        // Evento per il pulsante Play/Pause
         play.addEventListener('click', (event) => {
-          event.stopPropagation(); // Previene l'attivazione di eventi click del cardDiv
+          event.stopPropagation();
 
-          // Se una canzone è già in riproduzione, fermala e aggiorna il pulsante
           if (currentlyPlayingCard && currentlyPlayingCard !== play) {
             currentlyPlayingCard.classList.remove('bi-pause-fill');
             currentlyPlayingCard.classList.add('bi-play-fill');
           }
 
-          // Cambia stato Play/Pause
           if (!audioElement.paused && currentlyPlayingCard === play) {
-            // Metti in pausa la canzone corrente
             audioElement.pause();
             play.classList.remove('bi-pause-fill');
             play.classList.add('bi-play-fill');
           } else {
-            // Carica e avvia la nuova canzone
             fetchSongs(album.id);
             setTimeout(() => {
               audioElement.play();
@@ -135,7 +128,7 @@ function fetchAndDisplayRandom() {
               play.classList.remove('bi-play-fill');
               play.classList.add('bi-pause-fill');
             }, 1000);
-            currentlyPlayingCard = play; // Aggiorna la card attualmente in riproduzione
+            currentlyPlayingCard = play;
           }
         });
 
@@ -170,7 +163,6 @@ function fetchAndDisplayRandom() {
     .catch((error) => console.error('Errore:', error));
 }
 
-// Funzione per caricare più card
 function fetchCardsMain() {
   for (let i = 0; i < 10; i++) {
     fetchAndDisplayRandom();
